@@ -9,7 +9,7 @@ const appUrlStore = useAppUrlStore();
     <div class="shelterFrom">
         <form action="" target="iframe">
             <div class="close">
-                <span @click="appUrlStore.changeShowAddForm">×</span>
+                <span @click="appUrlStore.hideAllForm">×</span>
             </div>
             <br><br>
             <div>
@@ -22,7 +22,7 @@ const appUrlStore = useAppUrlStore();
                 <input type="text" v-model="appUrlStore.url">
             </div>
             <br><br>
-            <input type="submit" value="添加网站" class="submit" @click="appUrlStore.addUrlApp()">
+            <slot></slot>
         </form>
         <iframe id="iframe" name="iframe"></iframe>
     </div>
@@ -57,15 +57,6 @@ input{
 span{
     color: #fff;
     user-select: none;
-}
-.submit{
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    background-color: #fff;
-}
-input[type=submit]{
-    cursor:pointer;
 }
 .close{
     height: 30px;

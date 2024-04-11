@@ -24,7 +24,7 @@
     <ul :style="{top : y+'px', left: x+'px'}">
         <li class="placeholderLi"></li>
         <li @click="appUrlStore.deleteUrlApp(deleteWebAppIndex)">删除图标</li>
-        <li>编辑图标</li>
+        <li @click="appUrlStore.showUrlApp(deleteWebAppIndex)">编辑图标</li>
         <li>设置</li>
     </ul>
     

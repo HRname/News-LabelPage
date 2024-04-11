@@ -9,7 +9,13 @@ const appUrlStore = useAppUrlStore()
 <template>
   <div class="app">
     <!-- 添加图标 -->
-    <AddUrlListFrom v-show="appUrlStore.showAddForm"/>
+    <AddUrlListFrom v-show="appUrlStore.showAddForm">
+      <input type="submit" value="添加网站" class="submit" @click="appUrlStore.addUrlApp()">
+    </AddUrlListFrom>
+    <!-- 修改列表 -->
+    <AddUrlListFrom v-show="appUrlStore.showChangeForm">
+      <input type="submit" value="修改网站" class="submit" @click="appUrlStore.changeUrlApp(appUrlStore.operationIndex)">
+    </AddUrlListFrom>
      <!-- 一级路由出口 -->
     <RouterView/>
   </div>
@@ -23,5 +29,14 @@ const appUrlStore = useAppUrlStore()
   width: 100%;
   height: 100%;
   background-image: url("./assets/preview.jpg");
+}
+.submit{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #fff;
+}
+input[type=submit]{
+    cursor:pointer;
 }
 </style>
