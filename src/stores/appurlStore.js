@@ -16,6 +16,8 @@ export const useAppUrlStore = defineStore("appurl", () => {
     const playUrlList = ref([])
     const toolUrlList = ref([])
 
+    const router = useRouter();
+
     // 保存操作索引用于在数据回显之后修改数据
     const operationIndex = ref(-1)
 
@@ -40,7 +42,7 @@ export const useAppUrlStore = defineStore("appurl", () => {
     const changeShowChangeForm = () => {
         showChangeForm.value = !showChangeForm.value;
         // 存储路由信息
-        if(showAddForm.value){
+        if(showChangeForm.value){
             changeRouterPath()
         }else{
             routerPath.value = ''
@@ -57,7 +59,6 @@ export const useAppUrlStore = defineStore("appurl", () => {
     }
 
     // 保存当前路由地址
-    const router = useRouter();
     const routerPath = ref('')
     const changeRouterPath = () => {
         routerPath.value = router.currentRoute.value.path
@@ -74,6 +75,7 @@ export const useAppUrlStore = defineStore("appurl", () => {
         }
         // 判断当前位于哪个页面
         const path = routerPath.value
+        console.log(path)
         if(path === '/searchHome'){
             buildUrlAppId(homeUrlList,buildUrlApp)
             homeUrlList.value.push(buildUrlApp)
