@@ -43,11 +43,6 @@ const router = createRouter({
           path: 'searchPlay',
           name: 'searchPlay',
           component: SearchPlay
-        },
-        {
-          path: 'setting',
-          name: 'setting',
-          component: Setting
         }
       ]
     },

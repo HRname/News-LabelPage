@@ -1,6 +1,7 @@
 <script setup>
     import { ref,defineProps } from 'vue'
     import { useAppUrlStore } from '@/stores/appurlStore'
+    import { useSettingStore } from '@/stores/settingStore';
 
     defineProps({
         x:{
@@ -14,13 +15,14 @@
     })
 
     const appUrlStore = useAppUrlStore()
+    const settingStore = useSettingStore()
 </script>
 
 <template>
     <ul :style="{top : y+'px', left: x+'px'}">
         <li class="placeholderLi"></li>
         <li @click="appUrlStore.changeShowAddForm">添加图标</li>
-        <li>设置</li>
+        <li @click="settingStore.changeShowSetting()">设置</li>
     </ul>
     
 </template>

@@ -14,12 +14,12 @@ const appUrlStore = useAppUrlStore();
             <br><br>
             <div>
                 <span>网站名称：</span>
-                <input type="text" v-model="appUrlStore.name">
+                <input type="text" v-model="appUrlStore.name" placeholder="请输入网站名称">
             </div>
             <br>
             <div>
                 <span>网站网址：</span>
-                <input type="text" v-model="appUrlStore.url">
+                <input type="text" v-model="appUrlStore.url" placeholder="https://www">
             </div>
             <br><br>
             <slot></slot>
