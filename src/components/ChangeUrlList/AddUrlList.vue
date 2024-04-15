@@ -33,6 +33,7 @@ ul{
     height: 200px;
     width: 140px;
     background-color: #171427;
+    opacity: 0.9;
     border-radius: 10px;
 }
 .placeholderLi{
