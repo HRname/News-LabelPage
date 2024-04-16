@@ -24,8 +24,7 @@ const settingStore = useSettingStore();
     display: flex;
     align-items: center;
     line-height: 80px;
-    background-color: #282830;
-    opacity: 0.8;
+    background-color: rgba(28, 28, 30, 0.8);
     margin: 10px;
     border-radius: 10px;
 }

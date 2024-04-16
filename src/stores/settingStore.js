@@ -4,12 +4,16 @@ import { ref,onMounted,watch } from "vue";
 export const useSettingStore = defineStore("setting",() => {
     const optionList = ref([
         {id: 1, name: '个人中心',isSelect: true},
-        {id: 2, name: '选项',isSelect: false},
+        {id: 2, name: '搜索框',isSelect: false},
         {id: 3, name: '选项',isSelect: false},
         {id: 4, name: '选项',isSelect: false},
         {id: 5, name: '选项',isSelect: false},
         {id: 6, name: '选项',isSelect: false},
         {id: 7, name: '选项',isSelect: false}
+    ])
+
+    const settingList = ref([
+        {id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 30, searchBorderRadius:30, searchOpacity: 0.9},
     ])
 
     const showSetting = ref(false)
@@ -34,6 +38,7 @@ export const useSettingStore = defineStore("setting",() => {
         showSetting,
         changeShowSetting,
         optionList,
-        changeSelect
+        changeSelect,
+        settingList
     }
 })

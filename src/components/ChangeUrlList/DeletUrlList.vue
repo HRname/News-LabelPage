@@ -37,8 +37,7 @@ ul{
     position:absolute;
     height: 200px;
     width: 140px;
-    background-color: #171427;
-    opacity: 0.9;
+    background-color: rgba(14, 17, 27, 0.9);
     border-radius: 10px;
 }
 .placeholderLi{

@@ -1,6 +1,7 @@
 <script setup>
 import { useSettingStore } from '@/stores/settingStore';
 import SettingPersonal from './components/SettingPersonal.vue';
+import SettingSearch from './components/SettingSearch.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -24,6 +25,7 @@ const enterStyle = ref(false);
         <span class="lineBetween"></span>
         <div class="settingbody">
             <SettingPersonal></SettingPersonal>
+            <SettingSearch></SettingSearch>
         </div>
     </div>
 </template>
@@ -40,6 +42,7 @@ div{
     height: 100%;
     width: 502px;
     display: flex;
+    z-index:99;
 }
 .settingNav {
     width: 150px;
@@ -91,8 +94,8 @@ div{
     border-radius: 10px;
 }
 .selectColor{
-    background-color: #282830;
-    opacity: 0.8;
+    background-color: rgba(28, 28, 30, 0.9);
+    color: rgb(77, 170, 252);
 }
 .enterStyle{
     background-color: rgb(28, 28, 30, 0.5);

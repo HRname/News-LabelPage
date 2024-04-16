@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useSettingStore } from '@/stores/settingStore';
 
 const searchText = ref('')
 const activeBgc = ref(false)
@@ -13,26 +14,29 @@ const changeDefaultBgc = () => {
     activeBgc.value = false
     defaultBgc.value = true
 }
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
-<div class="Search">
+<div class="Search" :style="{ marginBottom:settingStore.settingList[0].searchBottomMargin + 'px'}">
         <form 
             action="https://www.bing.com/search" 
             method="get" 
             target="_blank" 
             @mouseenter="changeActiveBgc" 
             @mouseleave="changeDefaultBgc" 
-            :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}"
+            :class="{ activeBgc: activeBgc, defaultBgc: defaultBgc }"
+            :style="{ height: settingStore.settingList[0].searchHeight+'px', opacity: settingStore.settingList[0].searchOpacity ,borderRadius:settingStore.settingList[0].searchBorderRadius + 'px' }"
         >
 
-            <div class="png" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}">
+            <div class="png" :class="{ activeBgc: activeBgc, defaultBgc: defaultBgc }" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
                 <img src="https://files.codelife.cc/itab/search/bing.svg" alt="">
             </div>
 
-            <input type="search" v-model="searchText" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}">
+            <input type="search" v-model="searchText" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
 
-            <button class="submit" type="submit" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}">
+            <button class="submit" type="submit" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
                 <svg data-v-4baba1fe="" 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -44,7 +48,6 @@ const changeDefaultBgc = () => {
                 </g>
                 </svg>
             </button>
-
         </form>
     </div>
 </template>
@@ -52,47 +55,49 @@ const changeDefaultBgc = () => {
 <style scoped>
 .Search{
     width: 600px;
+    height: 100px;
     margin:0 auto;
-    margin-bottom: 60px;
-    overflow: hidden;
-    border-radius: 30px;
+    /* margin-bottom: 60px; */
 }
 .Search form{
     margin:0 auto;
-    height: 44px;
+    /* height: 44px; */
     width: 600px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     user-select: none;
+    overflow: hidden;
 }
 .Search input{
     outline: none;
     border: none;
     margin: 0 auto;
-    height: 44px;
+    /* height: 44px; */
     width: 522px;
     color: white;
 }
 .submit{
-    height: 40px;
+    /* height: 40px; */
     width: 40px;
     padding-right: 3px;
     border: none;
     margin: 0 auto;
     color: white;
     /* background-color: #333; */
-    border-radius: 15px;
 }
 .png{
-    height: 44px;
+    /* height: 44px; */
     width: 44px;
     user-select: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* background-color: #333; */
 }
 img{
-    margin-top: 11px;
-    margin-left: 11px;
+    display: inline-block;
     height: 22px;
     width: 22px;
     user-select: none;
