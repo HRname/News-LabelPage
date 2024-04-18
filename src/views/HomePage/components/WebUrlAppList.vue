@@ -4,6 +4,7 @@
     import DeletUrlList from '@/components/ChangeUrlList/DeletUrlList.vue';
     import { useAppUrlStore } from '@/stores/appurlStore';
     import { defineProps, ref } from 'vue'
+    import { useSettingStore } from '@/stores/settingStore';
 
     defineProps({
         urlList: {
@@ -49,6 +50,8 @@
         deleteWebAppIndex.value = index
         showDelOrder.value = !showDelOrder.value
     }
+
+    const settingStore = useSettingStore()
 </script>
 
 <template>
@@ -57,7 +60,7 @@
         @contextmenu.prevent.stop="clickAddHandel"
         @click="clickHidden"
     >
-        <li class="webUrlApp" v-for="(item,index) in urlList" :key="item.id">
+        <li class="webUrlApp" v-for="(item,index) in urlList" :key="item.id" :style="{ height:settingStore.settingList[1].webAppHeight+'px', width:settingStore.settingList[1].webAppWidth+'px'}">
             <WebUrlApp :webUrlApp = "item" @contextmenu.prevent.stop="clickDelHandel(index,$event)">
             </WebUrlApp>
         </li>
@@ -75,8 +78,8 @@
     user-select: none;
 }
 .webUrlApp{
-    width: 12%;
-    height: 100px;
+    /* width: 12%;
+    height: 100px; */
     text-align: center;
     display: inline-block;
     vertical-align: top;/* li元素对齐方式 */

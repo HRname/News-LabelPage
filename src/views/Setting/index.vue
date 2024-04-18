@@ -2,6 +2,7 @@
 import { useSettingStore } from '@/stores/settingStore';
 import SettingPersonal from './components/SettingPersonal.vue';
 import SettingSearch from './components/SettingSearch.vue';
+import SettingWebApp from './components/SettingWebApp.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -26,6 +27,7 @@ const enterStyle = ref(false);
         <div class="settingbody">
             <SettingPersonal></SettingPersonal>
             <SettingSearch></SettingSearch>
+            <SettingWebApp></SettingWebApp>
         </div>
     </div>
 </template>

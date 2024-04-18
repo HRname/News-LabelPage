@@ -57,6 +57,7 @@ const settingStore = useSettingStore()
     width: 600px;
     height: 100px;
     margin:0 auto;
+    z-index: 0;
     /* margin-bottom: 60px; */
 }
 .Search form{

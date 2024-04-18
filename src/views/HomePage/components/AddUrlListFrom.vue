@@ -35,6 +35,7 @@ const appUrlStore = useAppUrlStore();
     height: 100%;
     position: fixed;
     background-color: rgba(28,24,41,0.5);
+    z-index: 98;
 }
 form{
     width: 800px;
@@ -62,6 +63,7 @@ span{
     height: 30px;
     font-size: 25px;
     color: white;
+    font-family: "宋体";
     user-select: none;
     text-align: right;
     border: none;

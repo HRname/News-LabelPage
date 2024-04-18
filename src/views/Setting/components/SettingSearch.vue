@@ -49,7 +49,7 @@ const settingStore = useSettingStore()
 }
 .optiongName span {
     font-size: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     font-family: "微软雅黑";
 }
 

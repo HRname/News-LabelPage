@@ -54,6 +54,7 @@ ul{
     height: 100%;
     width: 60px;
     background-color: rgba(28,24,41,0.5);
+    z-index: 97;
 }
 ul li{
     height: 77px;
