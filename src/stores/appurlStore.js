@@ -111,6 +111,7 @@ export const useAppUrlStore = defineStore("appurl", () => {
 
     // 删除网站图标
     const deleteUrlApp = (index) => {
+        changeRouterPath()
         const path = routerPath.value
         if(path === '/searchHome'){
             homeUrlList.value.splice(index,1)
@@ -123,6 +124,7 @@ export const useAppUrlStore = defineStore("appurl", () => {
         }else if(path === '/searchTool'){
             toolUrlList.value.splice(index,1)
         }
+        routerPath.value = ''
     }
 
     // 编辑网站图标

@@ -41,7 +41,7 @@ ul{
     border-radius: 10px;
 }
 .placeholderLi{
-    height: 20px;
+    height: 10px;
 }
 li{
     height: 40px;
@@ -50,5 +50,6 @@ li{
     user-select: none;
     cursor:pointer;
     padding-left: 10px;
+    line-height: 40px;
 }
 </style>

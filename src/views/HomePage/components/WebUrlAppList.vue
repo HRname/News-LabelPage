@@ -44,8 +44,8 @@
     // 右键删除菜单
     const clickDelHandel = (index,e) => {
         if (e.button === 2) {
-            x.value = e.layerX
-            y.value = e.layerY
+            x.value = e.clientX
+            y.value = e.clientY
         }
         deleteWebAppIndex.value = index
         showDelOrder.value = !showDelOrder.value

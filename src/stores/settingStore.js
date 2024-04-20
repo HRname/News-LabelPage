@@ -6,15 +6,16 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 1, name: '个人中心',isSelect: true},
         {id: 2, name: '搜索框',isSelect: false},
         {id: 3, name: '图标',isSelect: false},
-        {id: 4, name: '选项',isSelect: false},
+        {id: 4, name: '时间',isSelect: false},
         {id: 5, name: '选项',isSelect: false},
         {id: 6, name: '选项',isSelect: false},
         {id: 7, name: '选项',isSelect: false}
     ])
 
     const settingList = ref([
-        {id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 30, searchBorderRadius:30, searchOpacity: 0.9},
+        {id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
         {id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
+        {id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
     ])
 
     const showSetting = ref(false)
@@ -46,6 +47,7 @@ export const useSettingStore = defineStore("setting",() => {
         settingList.value[1].webAppSelectRound = true;
         settingList.value[1].webAppBorderRadius = 50;
     }
+    // 监听设置数据，如果webAppBorderRadius为50，则选中圆形，否则为方形
     watch(settingList,(value)=>{
         if(value[1].webAppBorderRadius == 50){
             value[1].webAppSelectDefault = false;
@@ -58,6 +60,9 @@ export const useSettingStore = defineStore("setting",() => {
         deep: true,
         immediate: true
     })
+
+    // 时间设置
+    
 
     return {
         showSetting,

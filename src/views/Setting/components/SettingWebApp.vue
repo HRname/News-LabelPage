@@ -98,6 +98,7 @@ const settingStore = useSettingStore();
     width: 50px;
     height: 50px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .selectRadius div span{
     margin-top: 5px;
@@ -107,6 +108,7 @@ const settingStore = useSettingStore();
     width: 55px;
     font-size: 12px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .selectSpan{

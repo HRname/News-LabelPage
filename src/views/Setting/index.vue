@@ -3,6 +3,7 @@ import { useSettingStore } from '@/stores/settingStore';
 import SettingPersonal from './components/SettingPersonal.vue';
 import SettingSearch from './components/SettingSearch.vue';
 import SettingWebApp from './components/SettingWebApp.vue';
+import SettingTime from './components/SettingTime.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -28,6 +29,7 @@ const enterStyle = ref(false);
             <SettingPersonal></SettingPersonal>
             <SettingSearch></SettingSearch>
             <SettingWebApp></SettingWebApp>
+            <SettingTime></SettingTime>
         </div>
     </div>
 </template>
