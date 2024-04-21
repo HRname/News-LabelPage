@@ -5,6 +5,7 @@ import SettingSearch from './components/SettingSearch.vue';
 import SettingWebApp from './components/SettingWebApp.vue';
 import SettingTime from './components/SettingTime.vue';
 import SettingBackgroundImg from './components/SettingBackgroundImg.vue';
+import SettingPattern from './components/SettingPattern.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -13,7 +14,7 @@ const enterStyle = ref(false);
 
 <template>
     <div class="setting">
-        <span class="close" @click="settingStore.changeShowSetting()" :class="{ enterStyle:enterStyle}" @mouseover="enterStyle = true" @mouseout="enterStyle = false">
+        <span class="close" @click="settingStore.changeShowSetting()" :class="{ enterStyle:enterStyle }" @mouseover="enterStyle = true" @mouseout="enterStyle = false">
             ×
         </span>
         <div class="settingNav">
@@ -32,6 +33,7 @@ const enterStyle = ref(false);
             <SettingWebApp></SettingWebApp>
             <SettingTime></SettingTime>
             <SettingBackgroundImg></SettingBackgroundImg>
+            <SettingPattern></SettingPattern>
         </div>
     </div>
 </template>

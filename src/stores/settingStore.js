@@ -8,7 +8,7 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 3, name: '图标',isSelect: false},
         {id: 4, name: '时间',isSelect: false},
         {id: 5, name: '背景',isSelect: false},
-        {id: 6, name: '选项',isSelect: false},
+        {id: 6, name: '模式选择',isSelect: false},
         {id: 7, name: '选项',isSelect: false}
     ])
 
@@ -17,7 +17,7 @@ export const useSettingStore = defineStore("setting",() => {
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 10, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
-        { id: 5, name: 'simplePattern', HomePageNav: true, HomePageUrlApp: true}
+        { id: 5, name: 'simplePattern', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 }
     ])
 
     const showSetting = ref(false)
@@ -86,6 +86,22 @@ export const useSettingStore = defineStore("setting",() => {
         switchBackgroundOption();
     }
 
+    // 进入极简模式
+    const enterSimplePattern = () => {
+        settingList.value[4].HomePageNav = false;
+        settingList.value[4].HomePageUrlApp = false;
+        settingList.value[4].placeholder = 50;
+        settingList.value[4].isSimplePattern = true;
+    }
+
+    // 进入组件模式
+    const enterComponent = () => {
+        settingList.value[4].HomePageNav = true;
+        settingList.value[4].HomePageUrlApp = true;
+        settingList.value[4].isSimplePattern = false;
+        settingList.value[4].placeholder = 0;
+    }
+
     return {
         showSetting,
         changeShowSetting,
@@ -98,6 +114,8 @@ export const useSettingStore = defineStore("setting",() => {
         activeSelectBackground,
         switchBackgroundOption,
         enterModifyBackground,
-        enterSelectBackground
+        enterSelectBackground,
+        enterSimplePattern,
+        enterComponent
     }
 })

@@ -61,7 +61,7 @@ onMounted(() => selectColorStart())
         <div class="timeSettingBody">
             <div>
                 <div class="settingTimeShow">
-                    <span>显示时间</span>
+                    <span>隐藏时间</span>
                     <div class="buttonComponent" :class="{ buttonComponentActive: buttonComponentActive }" @click="activeButton">
                         <span :class="{ buttonSpanActive: buttonSpanActive, buttonSpanDefault:buttonSpanDefault }"></span>
                     </div>
