@@ -16,7 +16,7 @@ const settingStore = useSettingStore()
 </script>
 
 <template>
-    <ul>
+    <ul v-show="settingStore.settingList[4].HomePageNav">
         <li class="placeholderLi"></li>
         <li v-for="item in CategoryList" :key="item.id">
             <router-link :to="`${item.url}`" class="routerStyle">

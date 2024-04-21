@@ -13,8 +13,6 @@ import CategoryList from './components/CategoryNav.vue'
     <LocalTime></LocalTime>
     <!-- 搜索框 -->
     <SearchBox></SearchBox>
-    <!-- 右侧设置 -->
-
     <!-- 二级路由出口视图 -->
     <RouterView />
 </template>

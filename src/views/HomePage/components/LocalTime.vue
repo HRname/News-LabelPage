@@ -76,4 +76,7 @@ time{
 .timeFontWeight{
     font-weight: 600;
 }
+span{
+    user-select: none;
+}
 </style>

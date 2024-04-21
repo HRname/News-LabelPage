@@ -1,5 +1,6 @@
 <script setup>
 import AddUrlListFrom from '@/views/HomePage/components/AddUrlListFrom.vue'
+import BackgroundOption from '@/components/SettingGeneral/BackgroundOption.vue'
 import { useAppUrlStore } from '@/stores/appurlStore'
 import { useSettingStore } from '@/stores/settingStore'
 import Setting from '@/views/Setting/index.vue'
@@ -10,6 +11,9 @@ const settingStore = useSettingStore();
 
 <template>
   <div class="app">
+    <img :src=settingStore.settingList[3].backgroundFullPath alt="" class="appBackground" :style="{ filter: 'blur('+settingStore.settingList[3].shelterBackgroundBlur+'px)' }">
+    <!-- 背景设置选项卡 -->
+    <BackgroundOption></BackgroundOption>
     <!-- 添加图标 -->
     <AddUrlListFrom v-show="appUrlStore.showAddForm">
       <input type="submit" value="添加网站" class="submit" @click="appUrlStore.addUrlApp()">
@@ -21,7 +25,8 @@ const settingStore = useSettingStore();
     <!-- 设置窗口 -->
     <Setting v-show="settingStore.showSetting"></Setting>
      <!-- 一级路由出口 -->
-    <RouterView/>
+     <RouterView/>
+    <div class="shelterBackground" :style="{ opacity: settingStore.settingList[3].shelterBackgroundOpacity + '%'}"></div>
   </div>
 </template>
 
@@ -32,7 +37,14 @@ const settingStore = useSettingStore();
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/preview.jpg");
+}
+.appBackground{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -99;
 }
 .submit{
     width: 100px;
@@ -43,5 +55,14 @@ const settingStore = useSettingStore();
 }
 input[type=submit]{
     cursor:pointer;
+}
+.shelterBackground{
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -98;
 }
 </style>

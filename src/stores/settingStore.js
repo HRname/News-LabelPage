@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref,onMounted,watch } from "vue";
+import { ref,watch } from "vue";
 
 export const useSettingStore = defineStore("setting",() => {
     const optionList = ref([
@@ -7,15 +7,17 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 2, name: '搜索框',isSelect: false},
         {id: 3, name: '图标',isSelect: false},
         {id: 4, name: '时间',isSelect: false},
-        {id: 5, name: '选项',isSelect: false},
+        {id: 5, name: '背景',isSelect: false},
         {id: 6, name: '选项',isSelect: false},
         {id: 7, name: '选项',isSelect: false}
     ])
 
     const settingList = ref([
-        {id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
-        {id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
-        {id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
+        { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
+        { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
+        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
+        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 10, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
+        { id: 5, name: 'simplePattern', HomePageNav: true, HomePageUrlApp: true}
     ])
 
     const showSetting = ref(false)
@@ -61,8 +63,28 @@ export const useSettingStore = defineStore("setting",() => {
         immediate: true
     })
 
-    // 时间设置
-    
+    // 背景选项卡
+    const activeModifyBackground = () => {
+        settingList.value[3].modifyBackground = true;
+        settingList.value[3].selectBackground = false;
+    }
+    const activeSelectBackground = () => {
+        settingList.value[3].modifyBackground = false;
+        settingList.value[3].selectBackground = true;
+    }
+    // 控制背景选项卡开启关闭
+    const switchBackgroundOption = () => {
+        settingList.value[3].closeBackgroundOption = !settingList.value[3].closeBackgroundOption;
+    }
+    // 通过设置打开时选中进入时点击的选项
+    const enterModifyBackground = () => {
+        activeModifyBackground();
+        switchBackgroundOption();
+    }
+    const enterSelectBackground = () => {
+        activeSelectBackground();
+        switchBackgroundOption();
+    }
 
     return {
         showSetting,
@@ -71,6 +93,11 @@ export const useSettingStore = defineStore("setting",() => {
         changeSelect,
         settingList,
         selectDefault,
-        selectRound
+        selectRound,
+        activeModifyBackground,
+        activeSelectBackground,
+        switchBackgroundOption,
+        enterModifyBackground,
+        enterSelectBackground
     }
 })

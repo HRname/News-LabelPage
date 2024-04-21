@@ -54,7 +54,7 @@ onMounted(() => selectColorStart())
 </script>
 
 <template>
-    <div class="settingTime">
+    <div class="settingTime" v-show="settingStore.optionList[3].isSelect">
         <div class="timeSettingHeader">
             <span>时间设置</span>
         </div>

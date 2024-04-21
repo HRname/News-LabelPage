@@ -4,6 +4,7 @@ import SettingPersonal from './components/SettingPersonal.vue';
 import SettingSearch from './components/SettingSearch.vue';
 import SettingWebApp from './components/SettingWebApp.vue';
 import SettingTime from './components/SettingTime.vue';
+import SettingBackgroundImg from './components/SettingBackgroundImg.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -30,6 +31,7 @@ const enterStyle = ref(false);
             <SettingSearch></SettingSearch>
             <SettingWebApp></SettingWebApp>
             <SettingTime></SettingTime>
+            <SettingBackgroundImg></SettingBackgroundImg>
         </div>
     </div>
 </template>
@@ -46,7 +48,7 @@ div{
     height: 100%;
     width: 502px;
     display: flex;
-    z-index:99;
+    z-index: 99;
 }
 .settingNav {
     width: 150px;
