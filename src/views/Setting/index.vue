@@ -6,6 +6,7 @@ import SettingWebApp from './components/SettingWebApp.vue';
 import SettingTime from './components/SettingTime.vue';
 import SettingBackgroundImg from './components/SettingBackgroundImg.vue';
 import SettingPattern from './components/SettingPattern.vue';
+import SettingNav from './components/SettingNav.vue';
 import { ref } from 'vue';
 
 const settingStore = useSettingStore();
@@ -34,6 +35,7 @@ const enterStyle = ref(false);
             <SettingTime></SettingTime>
             <SettingBackgroundImg></SettingBackgroundImg>
             <SettingPattern></SettingPattern>
+            <SettingNav></SettingNav>
         </div>
     </div>
 </template>

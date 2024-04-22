@@ -9,7 +9,7 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 4, name: '时间',isSelect: false},
         {id: 5, name: '背景',isSelect: false},
         {id: 6, name: '模式选择',isSelect: false},
-        {id: 7, name: '选项',isSelect: false}
+        {id: 7, name: '左侧导航',isSelect: false}
     ])
 
     const settingList = ref([
@@ -17,8 +17,30 @@ export const useSettingStore = defineStore("setting",() => {
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 10, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
-        { id: 5, name: 'simplePattern', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 }
+        { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
+        { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
     ])
+
+// settingNav组件 span颜色列表
+// rgba(red,blue,yellow,opacity)
+const colorSpanList = ref([
+    { id: 1, name:"black", red: 28, blue: 41, green: 24, isActive: false},
+    { id: 2, name:"skyblue", red: 93, blue: 231, green: 226, isActive: false },
+    { id: 3, name:"orange", red: 254, blue: 0, green: 153, isActive: false },
+    { id: 4, name:"pink", red: 239, blue: 202, green: 195, isActive: false },
+    { id: 5, name:"lightOrange", red: 223, blue: 123, green: 197, isActive: false },
+    { id: 6, name:"purple", red: 204, blue: 231, green: 108, isActive: false },
+    { id: 7, name:"green", red: 125, blue: 88, green: 218, isActive: false },
+    { id: 8, name:"red", red: 182, blue: 66, green: 38, isActive: false },
+    { id: 9, name:"blue", red: 76, blue: 228, green: 136, isActive: false },
+    { id: 10, name:"gray", red: 226, blue: 244, green: 234, isActive: false },
+    { id: 11, name:"lightBule", red: 0, blue: 153, green: 102, isActive: false },
+    { id: 12, name:"workBule", red: 51, blue: 153, green: 51, isActive: false },
+    { id: 13, name:"deepBule", red: 0, blue: 102, green: 0, isActive: false },
+    { id: 14, name:"ligthGreen", red: 153, blue: 153, green: 255, isActive: false },
+    { id: 15, name:"ligthPink", red: 204, blue: 153, green: 0, isActive: false },
+    { id: 16, name:"deepBlack", red: 28, blue: 24, green: 41, isActive: false },
+])
 
     const showSetting = ref(false)
     // 控制显示设置界面
@@ -116,6 +138,7 @@ export const useSettingStore = defineStore("setting",() => {
         enterModifyBackground,
         enterSelectBackground,
         enterSimplePattern,
-        enterComponent
+        enterComponent,
+        colorSpanList
     }
 })

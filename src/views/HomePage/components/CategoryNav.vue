@@ -16,10 +16,10 @@ const settingStore = useSettingStore()
 </script>
 
 <template>
-    <ul v-show="settingStore.settingList[4].HomePageNav">
+    <ul v-show="settingStore.settingList[4].HomePageNav" :style="{ backgroundColor: 'rgba(' + settingStore.settingList[5].backgroundRed + ',' + settingStore.settingList[5].backgroundGreen + ',' + settingStore.settingList[5].backgroundBlue + ',' + settingStore.settingList[5].backgroundOpacity + ')' }">
         <li class="placeholderLi"></li>
         <li v-for="item in CategoryList" :key="item.id">
-            <router-link :to="`${item.url}`" class="routerStyle">
+            <router-link :to="`${item.url}`" class="routerStyle" :class="{ addBorderRadius: settingStore.settingList[5].isBorderRadius }">
                 <span v-html="item.icon"></span>
                 <span>{{ item.name }}</span>
             </router-link>
@@ -37,13 +37,14 @@ const settingStore = useSettingStore()
 <style scoped>
 .routerStyle{
     text-decoration: none;
-    display: block;
     color: white;
     height: 60px;
     width: 60px;
     text-align: center;
-    border-radius: 30px;
     cursor: pointer;/* 控制悬浮在元素上时鼠标变为小手 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 span{
     display: block;
@@ -53,12 +54,13 @@ ul{
     position: absolute;
     height: 100%;
     width: 60px;
-    background-color: rgba(28,24,41,0.5);
     z-index: 97;
 }
 ul li{
     height: 77px;
     width: 60px;
+    display: flex;
+    align-items: center;
 }
 .placeholderLi{
     height: 200px;
@@ -68,5 +70,8 @@ ul li{
 }
 .routerStyle span{
     user-select: none;
+}
+.addBorderRadius{
+    border-radius: 30px;
 }
 </style>
