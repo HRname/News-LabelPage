@@ -9,14 +9,24 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 4, name: '时间',isSelect: false},
         {id: 5, name: '背景',isSelect: false},
         {id: 6, name: '模式选择',isSelect: false},
-        {id: 7, name: '左侧导航',isSelect: false}
+        {id: 7, name: '左侧导航',isSelect: false},
+        {id: 8, name: "重置",isSelect: false}
     ])
 
     const settingList = ref([
         { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
-        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 10, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
+        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
+        { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
+        { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
+    ])
+
+    const defaultSettingList = ref([
+        { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
+        { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
+        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
+        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
         { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
         { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
     ])
@@ -124,6 +134,23 @@ const colorSpanList = ref([
         settingList.value[4].placeholder = 0;
     }
 
+    // 重置选项卡
+    const resetSearchSetting = () => {
+        settingList.value[0] = defaultSettingList.value[0];
+    }
+    const resetWebAppSetting = () => {
+        settingList.value[1] = defaultSettingList.value[1];
+    }
+    const resetTimeSetting = () => {
+        settingList.value[2] = defaultSettingList.value[2];
+    }
+    const resetNavSetting = () => {
+        settingList.value[5] = defaultSettingList.value[5];
+    }
+    const resetAllSetting = () => {
+        settingList.value = defaultSettingList.value;
+    }
+
     return {
         showSetting,
         changeShowSetting,
@@ -139,6 +166,11 @@ const colorSpanList = ref([
         enterSelectBackground,
         enterSimplePattern,
         enterComponent,
-        colorSpanList
+        colorSpanList,
+        resetSearchSetting,
+        resetWebAppSetting,
+        resetTimeSetting,
+        resetNavSetting,
+        resetAllSetting
     }
 })
