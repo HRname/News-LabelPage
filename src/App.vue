@@ -11,7 +11,6 @@ const settingStore = useSettingStore();
 
 <template>
   <div class="app">
-    <img :src=settingStore.settingList[3].backgroundFullPath alt="" class="appBackground" :style="{ filter: 'blur('+settingStore.settingList[3].shelterBackgroundBlur+'px)' }">
     <!-- 背景设置选项卡 -->
     <BackgroundOption></BackgroundOption>
     <!-- 添加图标 -->
@@ -37,14 +36,6 @@ const settingStore = useSettingStore();
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-}
-.appBackground{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -99;
 }
 .submit{
     width: 100px;
