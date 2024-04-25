@@ -1,7 +1,7 @@
 <script setup>
     import WebUrlAppList from './WebUrlAppList.vue'
     import { useAppUrlStore } from '@/stores/appurlStore';
-    import {ref} from 'vue';
+    import { ref } from 'vue';
 
     const urlList = ref([])
     const appUrlStore = useAppUrlStore()

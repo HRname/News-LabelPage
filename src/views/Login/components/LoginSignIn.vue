@@ -1,9 +1,11 @@
 <script setup>
+import { useUserStore } from '@/stores/userStore';
 
+const userStore = useUserStore();
 </script>
 
 <template>
-    <form class="loginSignIn">
+    <form class="loginSignIn" action="/searchHome" method="post">
         <div class="title">
             <h1>News LabelPage</h1>
             <h1>Login</h1>
@@ -12,20 +14,20 @@
             <div class="username">
                 <span>用户名：</span>
                 <div class="usernameInput">
-                    <input type="text" name="username" placeholder="请输入用户名">
+                    <input type="text" name="username" placeholder="请输入用户名" v-model="userStore.username">
                     <span></span>
                 </div>
             </div>
             <div class="password">
                 <span>密码：</span>
                 <div class="passwordInput">
-                    <input type="password" name="password" placeholder="请输入密码">
+                    <input type="password" name="password" placeholder="请输入密码" v-model="userStore.password">
                     <span></span>
                 </div>
             </div>
         </div>
         <div class="getButton">
-            <button @click="$router.push('/')">登录</button>
+            <button type="button" @click="userStore.login(userStore.username,userStore.password)">登录</button>
         </div>
     </form>
 </template>
@@ -160,5 +162,9 @@
     color: white;
     font-size: 16px;
     background: linear-gradient(to right, rgb(239,202,195) 0%,rgb(232,123,197) 100%);;
+}
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff;
 }
 </style>

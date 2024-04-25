@@ -1,7 +1,7 @@
 <script setup>
     import { ref,defineProps } from 'vue'
     import { useAppUrlStore } from '@/stores/appurlStore'
-    import { useSettingStore } from '@/stores/settingStore';
+    import { useUserStore } from '@/stores/userStore';
 
     defineProps({
         x:{
@@ -19,7 +19,7 @@
     })
 
     const appUrlStore = useAppUrlStore()
-    const settingStore = useSettingStore()
+    const userStore = useUserStore()
 </script>
 
 <template>
@@ -27,7 +27,7 @@
         <li class="placeholderLi"></li>
         <li @click="appUrlStore.deleteUrlApp(deleteWebAppIndex)">删除图标</li>
         <li @click="appUrlStore.showUrlApp(deleteWebAppIndex)">编辑图标</li>
-        <li @click="settingStore.changeShowSetting()">设置</li>
+        <li @click="userStore.verifyLogin()">设置</li>
     </ul>
     
 </template>

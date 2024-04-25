@@ -3,16 +3,21 @@ import AddUrlListFrom from '@/views/HomePage/components/AddUrlListFrom.vue'
 import BackgroundOption from '@/components/SettingGeneral/BackgroundOption.vue'
 import { useAppUrlStore } from '@/stores/appurlStore'
 import { useSettingStore } from '@/stores/settingStore'
+import DetermineAlert from '@/components/SettingGeneral/DetermineAlert.vue'
 import Setting from '@/views/Setting/index.vue'
+import { useUserStore } from './stores/userStore'
 
 const appUrlStore = useAppUrlStore()
 const settingStore = useSettingStore();
+const userStore = useUserStore();
 </script>
 
 <template>
   <div class="app">
     <!-- 背景设置选项卡 -->
     <BackgroundOption></BackgroundOption>
+    <!-- 警告弹框 -->
+    <DetermineAlert></DetermineAlert>
     <!-- 添加图标 -->
     <AddUrlListFrom v-show="appUrlStore.showAddForm">
       <input type="submit" value="添加网站" class="submit" @click="appUrlStore.addUrlApp()">

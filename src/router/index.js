@@ -5,7 +5,6 @@ import SearchWork from '@/views/HomePage/components/SearchWork.vue'
 import SearchTool from '@/views/HomePage/components/SearchTool.vue'
 import SearchCollect from '@/views/HomePage/components/SearchCollect.vue'
 import SearchPlay from '@/views/HomePage/components/SearchPlay.vue'
-import Setting from '@/views/Setting/index.vue'
 
 import Login from '@/views/Login/index.vue'
 
