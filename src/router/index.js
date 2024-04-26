@@ -5,6 +5,7 @@ import SearchWork from '@/views/HomePage/components/SearchWork.vue'
 import SearchTool from '@/views/HomePage/components/SearchTool.vue'
 import SearchCollect from '@/views/HomePage/components/SearchCollect.vue'
 import SearchPlay from '@/views/HomePage/components/SearchPlay.vue'
+import User from '@/views/User/index.vue'
 
 import Login from '@/views/Login/index.vue'
 
@@ -49,6 +50,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: User
     }
   ]
 })

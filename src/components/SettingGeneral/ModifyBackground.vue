@@ -6,6 +6,7 @@ const settingStore = useSettingStore()
 const filePath = ref('')
 const getImgFullPath = () => {
     const uploadFullPath = document.getElementById('uploadFullPath')
+    console.log(uploadFullPath)
     const file = uploadFullPath.files[0]
     filePath.value = URL.createObjectURL(file)
 }

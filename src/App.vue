@@ -10,6 +10,14 @@ import { useUserStore } from './stores/userStore'
 const appUrlStore = useAppUrlStore()
 const settingStore = useSettingStore();
 const userStore = useUserStore();
+const operationFunction = () => {
+  if(userStore.operationNum == 1){
+    userStore.outLogin()
+  }else if(userStore.operationNum == 2){
+    userStore.deleteUser()
+  }
+  userStore.operationNum = 0
+}
 </script>
 
 <template>
@@ -17,7 +25,17 @@ const userStore = useUserStore();
     <!-- 背景设置选项卡 -->
     <BackgroundOption></BackgroundOption>
     <!-- 警告弹框 -->
-    <DetermineAlert></DetermineAlert>
+    <DetermineAlert>
+      <template #title>
+         <div>
+          {{ userStore.warnings }}
+        </div>
+      </template>
+     
+      <template #submit>
+        <button @click="operationFunction()">确定</button>
+      </template>
+    </DetermineAlert>
     <!-- 添加图标 -->
     <AddUrlListFrom v-show="appUrlStore.showAddForm">
       <input type="submit" value="添加网站" class="submit" @click="appUrlStore.addUrlApp()">
@@ -29,8 +47,7 @@ const userStore = useUserStore();
     <!-- 设置窗口 -->
     <Setting v-show="settingStore.showSetting"></Setting>
      <!-- 一级路由出口 -->
-     <RouterView/>
-    <div class="shelterBackground" :style="{ opacity: settingStore.settingList[3].shelterBackgroundOpacity + '%'}"></div>
+    <RouterView/>
   </div>
 </template>
 
@@ -52,13 +69,14 @@ const userStore = useUserStore();
 input[type=submit]{
     cursor:pointer;
 }
-.shelterBackground{
-  background-color: black;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -98;
+button {
+    border: none;
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
+    user-select: none;
+    cursor: pointer;
 }
 </style>

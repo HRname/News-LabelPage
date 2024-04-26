@@ -12,6 +12,8 @@ const isShowSpan = ref(true);
 <template>
     <!-- 背景图片 -->
     <img :src=settingStore.settingList[3].backgroundFullPath alt="" class="appBackground" :style="{ filter: 'blur('+settingStore.settingList[3].shelterBackgroundBlur+'px)' }">
+    <!-- 控制背景透明  -->
+    <div class="shelterBackground" :style="{ opacity: settingStore.settingList[3].shelterBackgroundOpacity + '%'}"></div>
     <!-- 左侧导航 -->
     <CategoryList></CategoryList>
     <!-- 控制当前模式 -->
@@ -43,6 +45,15 @@ const isShowSpan = ref(true);
   width: 100%;
   height: 100%;
   z-index: -99;
+}
+.shelterBackground{
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -98;
 }
 .placeholder{
     height: 100px;

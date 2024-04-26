@@ -23,7 +23,7 @@ const enterStyle = ref(false);
             ×
         </span>
     </div>
-    <!-- 遮挡 -->
+    <!-- 打开背景设置选项卡时遮挡窗口 -->
     <div class="placeholder" v-show="settingStore.settingList[3].closeBackgroundOption"></div>
 </template>
 

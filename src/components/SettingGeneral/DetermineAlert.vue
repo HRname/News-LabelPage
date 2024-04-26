@@ -7,10 +7,10 @@ const userStore = useUserStore();
 <template>
     <div class="shelter" v-show="userStore.isShowAlert"></div>
     <div class="determineAlert" v-show="userStore.isShowAlert">
-        <div>你确定要退出登录吗？</div>
+        <slot name="title"></slot>
         <div>
             <button @click="userStore.isShowAlert = false">取消</button>
-            <button @click="userStore.outLogin()">确定</button>
+            <slot name="submit"></slot>
         </div>
     </div>
 </template>

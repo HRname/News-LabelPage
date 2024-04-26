@@ -4,6 +4,12 @@ import { useUserStore } from '@/stores/userStore';
 
 const settingStore = useSettingStore();
 const userStore = useUserStore();
+
+const showAlert = () => {
+    userStore.operationNum = 1
+    userStore.isShowAlert = true
+    userStore.warnings = '你确定要退出登录吗?'
+}
 </script>
 
 <template>
@@ -13,8 +19,8 @@ const userStore = useUserStore();
             <span>{{ userStore.user.username == null ? '用户名' : userStore.user.username }}</span>
         </div>
         <div class="userOption">
-            <span>填写个人账号资料</span>
-            <span class="outLogin" @click="userStore.isShowAlert = true">退出登录</span>
+            <span @click="userStore.toUser()">填写个人账号资料</span>
+            <span class="outLogin" @click="showAlert">退出登录</span>
         </div>
     </div>
 </template>
