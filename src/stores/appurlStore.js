@@ -3,6 +3,8 @@ import { useRouter } from "vue-router";
 import { getAllWebAppAPI } from "@/apis/webApp";
 import { useUserStore } from "./userStore";
 import { addWebApp } from "@/apis/webApp";
+import { updateWebApp } from "@/apis/webApp";
+import { deleteWebApp } from "@/apis/webApp";
 import { ref, watch } from "vue";
 
 export const useAppUrlStore = defineStore("appurl", () => {
@@ -142,19 +144,19 @@ export const useAppUrlStore = defineStore("appurl", () => {
         }else if(path === '/searchWork'){
             buildUrlApp.zoneName = 'workUrl'
             const res = await addWebApp(buildUrlApp)
-            homeUrlList.value.push(res.data)
+            workUrlList.value.push(res.data)
         }else if(path === '/searchCollect'){
             buildUrlApp.zoneName = 'collectUrl'
             const res = await addWebApp(buildUrlApp)
-            homeUrlList.value.push(res.data)
+            collectUrlList.value.push(res.data)
         }else if(path === '/searchPlay'){
             buildUrlApp.zoneName = 'playUrl'
             const res = await addWebApp(buildUrlApp)
-            homeUrlList.value.push(res.data)
+            playUrlList.value.push(res.data)
         }else if(path === '/searchTool'){
             buildUrlApp.zoneName = 'toolUrl'
             const res = await addWebApp(buildUrlApp)
-            homeUrlList.value.push(res.data)
+            toolUrlList.value.push(res.data)
         }
 
         // 添加完成隐藏添加菜单
@@ -170,18 +172,24 @@ export const useAppUrlStore = defineStore("appurl", () => {
     }
 
     // 删除网站图标
-    const deleteUrlApp = (index) => {
+    const deleteUrlApp = async (index) => {
         changeRouterPath()
         const path = routerPath.value
         if(path === '/searchHome'){
+            await deleteWebApp(homeUrlList.value[index].id)
             homeUrlList.value.splice(index,1)
         }else if(path === '/searchWork'){
+            await deleteWebApp(workUrlList.value[index].id)
             workUrlList.value.splice(index,1)
         }else if(path === '/searchCollect'){
+            await deleteWebApp(collectUrlList.value[index].id)
             collectUrlList.value.splice(index,1)
         }else if(path === '/searchPlay'){
+            await deleteWebApp(playUrlList.value[index].id)
             playUrlList.value.splice(index,1)
         }else if(path === '/searchTool'){
+            console.log(toolUrlList.value[index].id)
+            await deleteWebApp(toolUrlList.value[index].id)
             toolUrlList.value.splice(index,1)
         }
         routerPath.value = ''
@@ -224,9 +232,11 @@ export const useAppUrlStore = defineStore("appurl", () => {
     }
 
     // 修改网站图标
-    const changeUrlApp = (index) => {
+    const changeUrlApp = async (index) => {
         const buildUrlApp = {
             id: 0,
+            userId: userStore.user.id,
+            zoneName: '',
             webName:name.value,
             url: url.value,
             domainNameImg: url.value + '/favicon.ico',
@@ -234,20 +244,30 @@ export const useAppUrlStore = defineStore("appurl", () => {
         }
         const path = routerPath.value
         if(path === '/searchHome'){
+            buildUrlApp.zoneName = 'homeUrl'
             buildUrlApp.id = homeUrlList.value[index].id
-            homeUrlList.value.splice(index,1,buildUrlApp)
+            const res = await updateWebApp(buildUrlApp)
+            homeUrlList.value.splice(index,1,res.data)
         }else if(path === '/searchWork'){
+            buildUrlApp.zoneName = 'workUrl'
             buildUrlApp.id = workUrlList.value[index].id
-            workUrlList.value.splice(index,1,buildUrlApp)
+            const res = await updateWebApp(buildUrlApp)
+            workUrlList.value.splice(index,1,res.data)
         }else if(path === '/searchCollect'){
+            buildUrlApp.zoneName = 'collectUrl'
             buildUrlApp.id = collectUrlList.value[index].id
-            collectUrlList.value.splice(index,1,buildUrlApp)
+            const res = await updateWebApp(buildUrlApp)
+            collectUrlList.value.splice(index,1,res.data)
         }else if(path === '/searchPlay'){
+            buildUrlApp.zoneName = 'playUrl'
             buildUrlApp.id = playUrlList.value[index].id
-            playUrlList.value.splice(index,1,buildUrlApp)
+            const res = await updateWebApp(buildUrlApp)
+            playUrlList.value.splice(index,1,res.data)
         }else if(path === '/searchTool'){
+            buildUrlApp.zoneName = 'toolUrl'
             buildUrlApp.id = toolUrlList.value[index].id
-            toolUrlList.value.splice(index,1,buildUrlApp)
+            const res = await updateWebApp(buildUrlApp)
+            toolUrlList.value.splice(index,1,res.data)
         }
         // 重置操作索引
         operationIndex.value = -1

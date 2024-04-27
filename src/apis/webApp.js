@@ -21,3 +21,26 @@ export const addWebApp = ({userId,zoneName,webName,url,domainNameImg,bgcColor}) 
     }
   })
 }
+
+export const updateWebApp = ({id,userId,zoneName,webName,url,domainNameImg,bgcColor}) => {
+  return request({
+    url: '/searchHome',
+    method: 'put',
+    data: {
+      id: id,
+      userId: userId,
+      zoneName: zoneName,
+      webName: webName,
+      url: url,
+      domainNameImg: domainNameImg,
+      bgcColor: bgcColor
+    }
+  })
+}
+
+export const deleteWebApp = (id) => {
+  return request({
+    url: '/searchHome?id=' + id,
+    method: 'delete'
+  })
+}
