@@ -5,16 +5,19 @@ import { postUserAPI } from "@/apis/user";
 import { deleteUserAPI } from "@/apis/user";
 import { useSettingStore } from "@/stores/settingStore";
 import { useRouter } from "vue-router";
+import { useAppUrlStore } from "./appurlStore";
 
 export const useUserStore = defineStore("user",() => {
   const settingStore = useSettingStore()
   const router = useRouter()
-
+  const appurlStore = useAppUrlStore()
   const user = ref({id:null,username:null,password:null,sex:1,userHeaderImg:null,signature:null,address:null})
   const defaultUser = ref({id:null,username:null,password:null,sex:1,userHeaderImg:null,signature:null,address:null})
 
+  // 登录信息
   const username=ref("")
   const password=ref("")
+  // 警告弹框信息
   const isShowAlert = ref(false)
   const warnings = ref("")
   // 操作数,1代表当前为点击了退出登录,2代表点击了销毁账户
@@ -22,10 +25,9 @@ export const useUserStore = defineStore("user",() => {
 
   const login = async (username, password) => {
     const res = await getLoginAPI({username, password})
-    console.log(res.data)
     if (res.code === 1) {
       user.value = res.data
-      router.push("/")
+      appurlStore.setWebAppList(user.value.id)
     }else{
       alert(res.msg)
     }
@@ -33,8 +35,9 @@ export const useUserStore = defineStore("user",() => {
 
   const verifyLogin = () => {
     if (user.value.username == null) {
-      alert("请登录")
-      router.push("/login")
+      warnings.value = "请先登录"
+      operationNum.value = 3
+      isShowAlert.value = true
     }else{
       settingStore.changeShowSetting()
     }
@@ -74,6 +77,11 @@ export const useUserStore = defineStore("user",() => {
     }
   }
 
+  const toLogin = () => {
+    router.push("/login")
+    isShowAlert.value = false
+  }
+
   return {
     user,
     login,
@@ -86,6 +94,7 @@ export const useUserStore = defineStore("user",() => {
     modifyUser,
     deleteUser,
     warnings,
-    operationNum
+    operationNum,
+    toLogin
   }
 });

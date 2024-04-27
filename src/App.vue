@@ -15,6 +15,8 @@ const operationFunction = () => {
     userStore.outLogin()
   }else if(userStore.operationNum == 2){
     userStore.deleteUser()
+  }else if(userStore.operationNum == 3){
+    userStore.toLogin()
   }
   userStore.operationNum = 0
 }
