@@ -21,3 +21,40 @@ export const updateSearchSettingAPI = ({ userId,searchHeight,searchBottomMargin,
       }
     })
 }
+
+// 获取用户关于WebApp的设置信息
+export const getWebAppSettingAPI = (userId) => {
+  return request({
+    url: '/webAppSetting?userId='+userId,
+    method: 'get'
+  })
+}
+// 更新用户关于WebApp的设置信息
+export const updateWebAppSettingAPI = (
+    { 
+        userId,
+        webAppHeight,
+        webAppWidth,
+        webAppSize,
+        webAppOpacity,
+        webAppBorderRadius,
+        webAppFontSize,
+        webAppSelectDefault,
+        webAppSelectRound
+    }) => {
+    return request({
+      url: '/webAppSetting',
+      method: 'put',
+      data:{
+        userId,
+        webAppHeight,
+        webAppWidth,
+        webAppSize,
+        webAppOpacity,
+        webAppBorderRadius,
+        webAppFontSize,
+        webAppSelectDefault,
+        webAppSelectRound
+      }
+    })
+}

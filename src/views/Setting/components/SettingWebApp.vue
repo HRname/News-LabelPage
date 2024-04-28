@@ -12,12 +12,12 @@ const settingStore = useSettingStore();
         <div>
             <ul>
                 <li>
-                    <span>图标之间的纵向距离：{{ settingStore.settingList[1].webAppHeight + 'px' }}</span>
-                    <input type="range" min="100" max="200" v-model="settingStore.settingList[1].webAppHeight">
+                    <span>图标之间的纵向距离：{{ settingStore.webAppSetting.webAppHeight + 'px' }}</span>
+                    <input type="range" min="100" max="200" v-model="settingStore.webAppSetting.webAppHeight">
                 </li>
                 <li>
-                    <span>图标之间的横向距离：{{ settingStore.settingList[1].webAppWidth + 'px' }}</span>
-                    <input type="range" min="80" max="200" v-model="settingStore.settingList[1].webAppWidth">
+                    <span>图标之间的横向距离：{{ settingStore.webAppSetting.webAppWidth + 'px' }}</span>
+                    <input type="range" min="80" max="200" v-model="settingStore.webAppSetting.webAppWidth">
                 </li>
             </ul>
         </div>
@@ -25,38 +25,38 @@ const settingStore = useSettingStore();
             <ul>
                 <li class="selectRadius">
                     <div @click="settingStore.selectDefault">
-                        <img src="@/assets/默认.png" alt="" :class="{selectImg:settingStore.settingList[1].webAppSelectDefault}">
-                        <span :class="{selectSpan:settingStore.settingList[1].webAppSelectDefault}">默认圆角</span>
+                        <img src="@/assets/默认.png" alt="" :class="{selectImg:settingStore.webAppSetting.webAppSelectDefault}">
+                        <span :class="{selectSpan:settingStore.webAppSetting.webAppSelectDefault}">默认圆角</span>
                     </div>
                     <div @click="settingStore.selectRound">
-                        <img src="@/assets/圆形.png" alt="" :class="{selectImg:settingStore.settingList[1].webAppSelectRound}">
-                        <span :class="{selectSpan:settingStore.settingList[1].webAppSelectRound}">圆形图标</span>
+                        <img src="@/assets/圆形.png" alt="" :class="{selectImg:settingStore.webAppSetting.webAppSelectRound}">
+                        <span :class="{selectSpan:settingStore.webAppSetting.webAppSelectRound}">圆形图标</span>
                     </div>
                 </li>
                 <li>
-                    <span>图标大小：{{ settingStore.settingList[1].webAppSize + 'px' }}</span>
-                    <input type="range" min="30" max="100" v-model="settingStore.settingList[1].webAppSize">
+                    <span>图标大小：{{ settingStore.webAppSetting.webAppSize + 'px' }}</span>
+                    <input type="range" min="30" max="100" v-model="settingStore.webAppSetting.webAppSize">
                 </li>
                 <li>
-                    <span>图标透明度：{{ settingStore.settingList[1].webAppOpacity }}</span>
-                    <input type="range" min="0" max="1" step="0.01" v-model="settingStore.settingList[1].webAppOpacity">
+                    <span>图标透明度：{{ settingStore.webAppSetting.webAppOpacity }}</span>
+                    <input type="range" min="0" max="1" step="0.01" v-model="settingStore.webAppSetting.webAppOpacity">
                 </li>
                 <li>
-                    <span>图标圆角：{{ settingStore.settingList[1].webAppBorderRadius + '%' }}</span>
-                    <input type="range" min="0" max="50" v-model="settingStore.settingList[1].webAppBorderRadius">
+                    <span>图标圆角：{{ settingStore.webAppSetting.webAppBorderRadius + '%' }}</span>
+                    <input type="range" min="0" max="50" v-model="settingStore.webAppSetting.webAppBorderRadius">
                 </li>
             </ul>
         </div>
         <div>
             <ul>
                 <li>
-                    <span>网站名称字体大小：{{ settingStore.settingList[1].webAppFontSize + 'px'}}</span>
-                    <input type="range" min="8" max="32" v-model="settingStore.settingList[1].webAppFontSize">
+                    <span>网站名称字体大小：{{ settingStore.webAppSetting.webAppFontSize + 'px'}}</span>
+                    <input type="range" min="8" max="32" v-model="settingStore.webAppSetting.webAppFontSize">
                 </li>
             </ul>
         </div>
         <div class="submit">
-            <button>保存</button>
+            <button @click="settingStore.updateWebAppSetting(settingStore.webAppSetting)">保存</button>
         </div>
     </div>
 </template>

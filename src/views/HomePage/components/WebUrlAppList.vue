@@ -61,7 +61,7 @@
         @click="clickHidden"
         v-show="settingStore.settingList[4].HomePageUrlApp"
     >
-        <li class="webUrlApp" v-for="(item,index) in urlList" :key="item.id" :style="{ height:settingStore.settingList[1].webAppHeight+'px', width:settingStore.settingList[1].webAppWidth+'px'}">
+        <li class="webUrlApp" v-for="(item,index) in urlList" :key="item.id" :style="{ height:settingStore.webAppSetting.webAppHeight+'px', width:settingStore.webAppSetting.webAppWidth+'px'}">
             <WebUrlApp :webUrlApp = "item" @contextmenu.prevent.stop="clickDelHandel(index,$event)">
             </WebUrlApp>
         </li>
@@ -77,12 +77,17 @@
     width: 1200px;
     margin: 0 auto;
     user-select: none;
+    display: flex;
+    flex-direction: row;
 }
 .webUrlApp{
     /* width: 12%;
     height: 100px; */
     text-align: center;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
     vertical-align: top;/* li元素对齐方式 */
 }
 </style>

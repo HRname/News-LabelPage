@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-import { ref,watch } from "vue";
+import { computed,ref,watch } from "vue";
 import { getSearchSettingAPI, updateSearchSettingAPI } from "@/apis/setting";
+import { getWebAppSettingAPI, updateWebAppSettingAPI } from "@/apis/setting";
 
 export const useSettingStore = defineStore("setting",() => {
     const optionList = ref([
@@ -20,21 +21,42 @@ export const useSettingStore = defineStore("setting",() => {
         searchBorderRadius:30,
         searchOpacity: 0.9
     })
+    const webAppSetting = ref({
+        webAppHeight: 100,
+        webAppWidth: 100,
+        webAppSize: 55,
+        webAppOpacity: 0.9,
+        webAppBorderRadius: 20,
+        webAppFontSize: 12,
+        webAppSelectDefault: true,
+        webAppSelectRound: false
+    })
+    const bgcSize= computed(() => {
+        const result = Number(webAppSetting.value.webAppSize) + 2;
+        return result;
+    })
 
     // 登录获取用户设置信息
     const getAllSetting = async (userId) => {
         const searchRes = await getSearchSettingAPI(userId);
         searchSetting.value = searchRes.data;
+        const webAppRes = await getWebAppSettingAPI(userId);
+        webAppSetting.value = webAppRes.data;
     }
     // 更新用户搜索框设置信息
     const updateSearchSetting = async (searchSetting) => {
         const searchRes = await updateSearchSettingAPI(searchSetting);
         console.log(searchRes);
     }
+    // 更新用户图标设置信息
+    const updateWebAppSetting = async (webAppSetting) => {
+        const webAppRes = await updateWebAppSettingAPI(webAppSetting);
+        console.log(webAppRes);
+    }
 
     const settingList = ref([
         {},
-        { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
+        {},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
         { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
@@ -91,23 +113,23 @@ const colorSpanList = ref([
 
     // 图标设置的函数
     const selectDefault = () => {
-        settingList.value[1].webAppSelectDefault = true;
-        settingList.value[1].webAppSelectRound = false;
-        settingList.value[1].webAppBorderRadius = 20;
+        webAppSetting.value.webAppSelectDefault = true;
+        webAppSetting.value.webAppSelectRound = false;
+        webAppSetting.value.webAppBorderRadius = 20;
     }
     const selectRound = () => {
-        settingList.value[1].webAppSelectDefault = false;
-        settingList.value[1].webAppSelectRound = true;
-        settingList.value[1].webAppBorderRadius = 50;
+        webAppSetting.value.webAppSelectDefault = false;
+        webAppSetting.value.webAppSelectRound = true;
+        webAppSetting.value.webAppBorderRadius = 50;
     }
     // 监听设置数据，如果webAppBorderRadius为50，则选中圆形，否则为方形
-    watch(settingList,(value)=>{
-        if(value[1].webAppBorderRadius == 50){
-            value[1].webAppSelectDefault = false;
-            value[1].webAppSelectRound = true;
+    watch(webAppSetting,(value)=>{
+        if(value.webAppBorderRadius == 50){
+            webAppSetting.value.webAppSelectDefault = false;
+            webAppSetting.value.webAppSelectRound = true;
         }else{
-            value[1].webAppSelectDefault = true;
-            value[1].webAppSelectRound = false;
+            webAppSetting.value.webAppSelectDefault = true;
+            webAppSetting.value.webAppSelectRound = false;
         }
     },{
         deep: true,
@@ -158,7 +180,7 @@ const colorSpanList = ref([
         searchSetting.value = defaultSettingList.value[0];
     }
     const resetWebAppSetting = () => {
-        settingList.value[1] = defaultSettingList.value[1];
+        searchSetting.value = defaultSettingList.value[1];
     }
     const resetTimeSetting = () => {
         settingList.value[2] = defaultSettingList.value[2];
@@ -193,6 +215,9 @@ const colorSpanList = ref([
         resetAllSetting,
         searchSetting,
         getAllSetting,
-        updateSearchSetting
+        updateSearchSetting,
+        webAppSetting,
+        bgcSize,
+        updateWebAppSetting
     }
 })

@@ -11,10 +11,12 @@ import { useSettingStore } from '@/stores/settingStore'
 </script>
 
 <template>
-    <a :href="webUrlApp.url" target="_blank" :style="{ opacity:settingStore.settingList[1].webAppOpacity }">
-        <span class="bgc" :style="{backgroundColor: webUrlApp.bgcColor,height:settingStore.settingList[1].webAppSize+2+'px', width:settingStore.settingList[1].webAppSize+2+'px', borderRadius:settingStore.settingList[1].webAppBorderRadius+'%'}"></span>
-        <img :src="webUrlApp.domainNameImg" alt="" :style="{ height:settingStore.settingList[1].webAppSize+'px', width:settingStore.settingList[1].webAppSize+'px', borderRadius:settingStore.settingList[1].webAppBorderRadius+'%'}">
-        <span :style="{fontSize:settingStore.settingList[1].webAppFontSize+'px'}">{{ webUrlApp.webName }}</span>
+    <a :href="webUrlApp.url" target="_blank" :style="{ opacity:settingStore.webAppSetting.webAppOpacity }">
+        <div class="bgcApp" :style="{ height:settingStore.webAppSetting.webAppSize+'px', width:settingStore.webAppSetting.webAppSize+'px'}">
+            <span class="bgc" :style="{backgroundColor: webUrlApp.bgcColor,height:settingStore.bgcSize+'px', width:settingStore.bgcSize+'px', borderRadius:settingStore.webAppSetting.webAppBorderRadius+'%'}"></span>
+            <img :src="webUrlApp.domainNameImg" alt="" :style="{ height:settingStore.webAppSetting.webAppSize+'px', width:settingStore.webAppSetting.webAppSize+'px', borderRadius:settingStore.webAppSetting.webAppBorderRadius+'%'}">
+        </div>
+        <span class="webname" :style="{fontSize:settingStore.webAppSetting.webAppFontSize+'px'}">{{ webUrlApp.webName }}</span>
     </a>
 </template>
 
@@ -23,8 +25,11 @@ import { useSettingStore } from '@/stores/settingStore'
     display: block;
     position: absolute;
     top: 0;
-    left: 21.5px;
+    left: 0;
     z-index: -100;
+}
+.bgcApp{
+    position: relative;
 }
 img{
     height: 55px;
@@ -36,15 +41,16 @@ img{
     image-rendering: -webkit-optimize-contrast;
     z-index: 10;
 }
-span{
-    width: 100%;
-    flex-shrink: 1;
+.webname{
     display: block;
+    height: 30px;
+    line-height: 30px;
 }
 a{
-    position: relative;
     width: 100px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
     color:white;
     text-align: center;
