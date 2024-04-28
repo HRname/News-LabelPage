@@ -19,7 +19,7 @@ const settingStore = useSettingStore()
 </script>
 
 <template>
-<div class="Search" :style="{ marginBottom:settingStore.settingList[0].searchBottomMargin + 'px'}">
+<div class="Search" :style="{ marginBottom:settingStore.searchSetting.searchBottomMargin + 'px'}">
         <form 
             action="https://www.bing.com/search" 
             method="get" 
@@ -27,16 +27,16 @@ const settingStore = useSettingStore()
             @mouseenter="changeActiveBgc" 
             @mouseleave="changeDefaultBgc" 
             :class="{ activeBgc: activeBgc, defaultBgc: defaultBgc }"
-            :style="{ height: settingStore.settingList[0].searchHeight+'px', opacity: settingStore.settingList[0].searchOpacity ,borderRadius:settingStore.settingList[0].searchBorderRadius + 'px' }"
+            :style="{ height: settingStore.searchSetting.searchHeight+'px', opacity: settingStore.searchSetting.searchOpacity ,borderRadius:settingStore.searchSetting.searchBorderRadius + 'px' }"
         >
 
-            <div class="png" :class="{ activeBgc: activeBgc, defaultBgc: defaultBgc }" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
+            <div class="png" :class="{ activeBgc: activeBgc, defaultBgc: defaultBgc }" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
                 <img src="https://files.codelife.cc/itab/search/bing.svg" alt="">
             </div>
 
-            <input type="search" v-model="searchText" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
+            <input type="search" v-model="searchText" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
 
-            <button class="submit" type="submit" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.settingList[0].searchHeight + 'px' }">
+            <button class="submit" type="submit" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
                 <svg data-v-4baba1fe="" 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -74,6 +74,7 @@ const settingStore = useSettingStore()
     outline: none;
     border: none;
     margin: 0 auto;
+    font-size: 14px;
     /* height: 44px; */
     width: 522px;
     color: white;

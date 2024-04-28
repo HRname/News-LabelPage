@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref,watch } from "vue";
+import { getSearchSettingAPI, updateSearchSettingAPI } from "@/apis/setting";
 
 export const useSettingStore = defineStore("setting",() => {
     const optionList = ref([
@@ -13,8 +14,26 @@ export const useSettingStore = defineStore("setting",() => {
         {id: 8, name: "重置",isSelect: false}
     ])
 
+    const searchSetting = ref({
+        searchHeight: 44,
+        searchBottomMargin: 0,
+        searchBorderRadius:30,
+        searchOpacity: 0.9
+    })
+
+    // 登录获取用户设置信息
+    const getAllSetting = async (userId) => {
+        const searchRes = await getSearchSettingAPI(userId);
+        searchSetting.value = searchRes.data;
+    }
+    // 更新用户搜索框设置信息
+    const updateSearchSetting = async (searchSetting) => {
+        const searchRes = await updateSearchSettingAPI(searchSetting);
+        console.log(searchRes);
+    }
+
     const settingList = ref([
-        { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
+        {},
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
@@ -136,7 +155,7 @@ const colorSpanList = ref([
 
     // 重置选项卡
     const resetSearchSetting = () => {
-        settingList.value[0] = defaultSettingList.value[0];
+        searchSetting.value = defaultSettingList.value[0];
     }
     const resetWebAppSetting = () => {
         settingList.value[1] = defaultSettingList.value[1];
@@ -171,6 +190,9 @@ const colorSpanList = ref([
         resetWebAppSetting,
         resetTimeSetting,
         resetNavSetting,
-        resetAllSetting
+        resetAllSetting,
+        searchSetting,
+        getAllSetting,
+        updateSearchSetting
     }
 })

@@ -12,20 +12,23 @@ const settingStore = useSettingStore()
         <div class="searchOption">
             <ul>
                 <li>
-                    <span>搜索框高度：{{ settingStore.settingList[0].searchHeight + 'px' }}</span>
-                    <input type="range" name="" min="30" max="100" v-model="settingStore.settingList[0].searchHeight">
+                    <span>搜索框高度：{{ settingStore.searchSetting.searchHeight + 'px' }}</span>
+                    <input type="range" name="" min="30" max="100" v-model="settingStore.searchSetting.searchHeight">
                 </li>
                 <li>
-                    <span>搜索框透明度：{{ settingStore.settingList[0].searchOpacity }}</span>
-                    <input type="range" name="" min="0" max="1" step="0.01" v-model="settingStore.settingList[0].searchOpacity">
+                    <span>搜索框透明度：{{ settingStore.searchSetting.searchOpacity }}</span>
+                    <input type="range" name="" min="0" max="1" step="0.01" v-model="settingStore.searchSetting.searchOpacity">
                 </li>
                 <li>
-                    <span>搜索框圆角大小：{{ settingStore.settingList[0].searchBorderRadius + 'px' }}</span>
-                    <input type="range" name="" min="0" max="100" v-model="settingStore.settingList[0].searchBorderRadius">
+                    <span>搜索框圆角大小：{{ settingStore.searchSetting.searchBorderRadius + 'px' }}</span>
+                    <input type="range" name="" min="0" max="100" v-model="settingStore.searchSetting.searchBorderRadius">
                 </li>
                 <li>
-                    <span>搜索框与网站图标区域之间的距离：{{ settingStore.settingList[0].searchBottomMargin + 'px' }}</span>
-                    <input type="range" name="" min="0" max="200" v-model="settingStore.settingList[0].searchBottomMargin">
+                    <span>搜索框与网站图标区域之间的距离：{{ settingStore.searchSetting.searchBottomMargin + 'px' }}</span>
+                    <input type="range" name="" min="0" max="200" v-model="settingStore.searchSetting.searchBottomMargin">
+                </li>
+                <li class="submit">
+                    <button @click="settingStore.updateSearchSetting(settingStore.searchSetting)">保存</button>
                 </li>
             </ul>
         </div>
@@ -34,6 +37,7 @@ const settingStore = useSettingStore()
 
 <style scoped>
 .settingSearch {
+    position: relative;
     height: 100%;
     width: 350px;
 }
@@ -76,6 +80,19 @@ const settingStore = useSettingStore()
     font-size: 12px;
     font-family: "微软雅黑";
     letter-spacing: 2px;
+}
+.submit button{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    border: none;
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
+    user-select: none;
+    cursor: pointer;
 }
 input[type="range"] {
     appearance: none;

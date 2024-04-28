@@ -28,6 +28,7 @@ export const useUserStore = defineStore("user",() => {
     if (res.code === 1) {
       user.value = res.data
       appurlStore.setWebAppList(user.value.id)
+      settingStore.getAllSetting(user.value.id)
     }else{
       alert(res.msg)
     }

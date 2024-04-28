@@ -54,13 +54,17 @@ const selectColor = (index) => {
                 </div>
             </div>
         </div>
+        <div class="submit">
+            <button>保存</button>
+        </div>
     </div>
 </template>
 
 <style scoped>
 .settingNav{
+    position: relative;
+    width: 100%;
     height: 100%;
-    width: 350px;
 }
 .settingNavHeader{
     height: 120px;
@@ -102,6 +106,7 @@ const selectColor = (index) => {
 }
 .selectShape>div{
     display: flex;
+    line-height: 23px;
     width: 100px;
 }
 .selectShape>div input{
@@ -128,10 +133,25 @@ const selectColor = (index) => {
     border: 2px solid #ccc;
 }
 
-input[tepe="radio"] {
-    height: 40px;
-    width: 40px;
+input[type="radio"] {
+    height: 20px;
+    width: 20px;
 }
+
+.submit button{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    border: none;
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
+    user-select: none;
+    cursor: pointer;
+}
+
 input[type="range"] {
     appearance: none;
     margin: 0;

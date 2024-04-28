@@ -55,11 +55,15 @@ const settingStore = useSettingStore();
                 </li>
             </ul>
         </div>
+        <div class="submit">
+            <button>保存</button>
+        </div>
     </div>
 </template>
 
 <style scoped>
 .webAppSetting {
+    position: relative;
     height: 100%;
     width: 350px;
 }
@@ -133,6 +137,21 @@ ul li{
     height: 80px;
     font-size: 12px;
 }
+
+.submit button{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    border: none;
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
+    user-select: none;
+    cursor: pointer;
+}
+
 input[type="range"] {
     appearance: none;
     margin: 0;

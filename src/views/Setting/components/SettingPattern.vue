@@ -19,11 +19,15 @@ const settingStore = useSettingStore();
                 <span :class="{ selectSpan: !settingStore.settingList[4].isSimplePattern }">组件</span>
             </div>
         </div>
+        <div class="submit">
+            <button>保存</button>
+        </div>
     </div>
 </template>
 
 <style scoped>
 .settingPattern {
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -75,6 +79,21 @@ const settingStore = useSettingStore();
     border-radius: 12px;
     cursor: pointer;
 }
+
+.submit button{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    border: none;
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
+    user-select: none;
+    cursor: pointer;
+}
+
 
 .selectSpan{
     background-color: rgb(77, 170, 252);

@@ -56,11 +56,6 @@ div{
     display: flex;
     z-index: 99;
 }
-.settingNav {
-    width: 150px;
-    height: 100%;
-    color: white;
-}
 .settingbody {
     width: 350px;
     height: 100%;
