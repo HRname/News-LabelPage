@@ -2,6 +2,10 @@ import { defineStore } from "pinia";
 import { computed,ref,watch } from "vue";
 import { getSearchSettingAPI, updateSearchSettingAPI } from "@/apis/setting";
 import { getWebAppSettingAPI, updateWebAppSettingAPI } from "@/apis/setting";
+import { getTimeSettingAPI,updateTimeSettingAPI } from "@/apis/setting";
+import { getBackgroundSettingAPI,updateBackgroundSettingAPI } from "@/apis/setting";
+import { getSimplePatternSettingAPI,updateSimplePatternSettingAPI } from "@/apis/setting";
+import { getNavSettingAPI,updateNavSettingAPI } from "@/apis/setting";
 
 export const useSettingStore = defineStore("setting",() => {
     const optionList = ref([
@@ -35,6 +39,39 @@ export const useSettingStore = defineStore("setting",() => {
         const result = Number(webAppSetting.value.webAppSize) + 2;
         return result;
     })
+    const timeSetting = ref({
+        isShow: true,
+        isShowHourMinutes: true,
+        isShowYear: true,
+        isShowMonthDay: true,
+        isShowWeek: true,
+        timeFontWeight: false,
+        timeTypeTwentyFour: true,
+        timeFontSize: 14,
+        timeFontColor: 'white' ,
+        timeFontColorIndex: 0
+    })
+    const backgroundSetting = ref({
+        shelterBackgroundOpacity: 0,
+        shelterBackgroundBlur: 0,
+        modifyBackground: false,
+        selectBackground: false,
+        backgroundFullPath: '/src/assets/preview.jpg',
+        closeBackgroundOption: false
+    })
+    const simplePatternSetting = ref({
+        HomePageNav: true,
+        HomePageUrlApp: true,
+        isSimplePattern: false,
+        placeholder: 0
+    })
+    const navSetting = ref({
+        backgroundRed: 28,
+        backgroundGreen: 24,
+        backgroundBlue: 41,
+        backgroundOpacity: 0.5,
+        isBorderRadius: false
+    })
 
     // 登录获取用户设置信息
     const getAllSetting = async (userId) => {
@@ -42,6 +79,14 @@ export const useSettingStore = defineStore("setting",() => {
         searchSetting.value = searchRes.data;
         const webAppRes = await getWebAppSettingAPI(userId);
         webAppSetting.value = webAppRes.data;
+        const timeRes = await getTimeSettingAPI(userId);
+        timeSetting.value = timeRes.data;
+        const backgroundRes = await getBackgroundSettingAPI(userId);
+        backgroundSetting.value = backgroundRes.data;
+        const simplePatternRes = await getSimplePatternSettingAPI(userId);
+        simplePatternSetting.value = simplePatternRes.data;
+        const navRes = await getNavSettingAPI(userId);
+        navSetting.value = navRes.data;
     }
     // 更新用户搜索框设置信息
     const updateSearchSetting = async (searchSetting) => {
@@ -53,20 +98,31 @@ export const useSettingStore = defineStore("setting",() => {
         const webAppRes = await updateWebAppSettingAPI(webAppSetting);
         console.log(webAppRes);
     }
-
-    const settingList = ref([
-        {},
-        {},
-        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
-        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
-        { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
-        { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
-    ])
+    // 更新用户时间设置信息
+    const updateTimeSetting = async (timeSetting) => {
+        const timeRes = await updateTimeSettingAPI(timeSetting);
+        console.log(timeRes);
+    }
+    // 更新用户背景设置信息
+    const updateBackgroundSetting = async (backgroundSetting) => {
+        const backgroundRes = await updateBackgroundSettingAPI(backgroundSetting);
+        console.log(backgroundRes);
+    }
+    // 更新用户模式设置信息
+    const updateSimplePatternSetting = async (simplePatternSetting) => {
+        const simplePatternRes = await updateSimplePatternSettingAPI(simplePatternSetting);
+        console.log(simplePatternRes);
+    }
+    // 更新用户导航栏设置信息
+    const updateNavSetting = async (navSetting) => {
+        const navRes = await updateNavSettingAPI(navSetting);
+        console.log(navRes);
+    }
 
     const defaultSettingList = ref([
         { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
-        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyeFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
+        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
         { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
         { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
@@ -149,11 +205,13 @@ const colorSpanList = ref([
     const switchBackgroundOption = () => {
         settingList.value[3].closeBackgroundOption = !settingList.value[3].closeBackgroundOption;
     }
-    // 通过设置打开时选中进入时点击的选项
+    // 通过设置打开背景设置时选中进入时点击的选项
+    // 进入自定义背景
     const enterModifyBackground = () => {
         activeModifyBackground();
         switchBackgroundOption();
     }
+    // 进入选择背景
     const enterSelectBackground = () => {
         activeSelectBackground();
         switchBackgroundOption();
@@ -197,7 +255,6 @@ const colorSpanList = ref([
         changeShowSetting,
         optionList,
         changeSelect,
-        settingList,
         selectDefault,
         selectRound,
         activeModifyBackground,
@@ -218,6 +275,14 @@ const colorSpanList = ref([
         updateSearchSetting,
         webAppSetting,
         bgcSize,
-        updateWebAppSetting
+        updateWebAppSetting,
+        timeSetting,
+        updateTimeSetting,
+        backgroundSetting,
+        updateBackgroundSetting,
+        simplePatternSetting,
+        updateSimplePatternSetting,
+        navSetting,
+        updateNavSetting,
     }
 })

@@ -13,13 +13,13 @@ const getImgFullPath = () => {
 
 const changeBackground = () => {
     if( filePath.value === '' ) return alert('请选择图片')
-    settingStore.settingList[3].backgroundFullPath = filePath.value
+    settingStore.backgroundSetting.backgroundFullPath = filePath.value
     settingStore.switchBackgroundOption()
 }
 </script>
 
 <template>
-    <div class="modifyBackground" v-show="settingStore.settingList[3].modifyBackground">
+    <div class="modifyBackground" v-show="settingStore.backgroundSetting.modifyBackground">
         <div class="uploadFile">
             <span>选择文件</span>
             <input class="uploadImg" id="uploadFullPath" type="file" name="" @input="getImgFullPath">
@@ -29,7 +29,7 @@ const changeBackground = () => {
             <img :src= filePath alt="请选择图片">
         </div>
     </div>
-    <div class="getButton" v-show="settingStore.settingList[3].modifyBackground">
+    <div class="getButton" v-show="settingStore.backgroundSetting.modifyBackground">
         <button @click="changeBackground">确定</button>
     </div>
 </template>

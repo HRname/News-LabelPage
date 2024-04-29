@@ -4,8 +4,8 @@ import { onMounted, ref } from 'vue';
 
 const settingStore = useSettingStore();
 
-const timeTwentyeFour = () => {
-    settingStore.settingList[2].timeTypeTwentyeFour = !settingStore.settingList[2].timeTypeTwentyeFour;
+const timeTwentyFour = () => {
+    settingStore.timeSetting.timeTypeTwentyFour = !settingStore.timeSetting.timeTypeTwentyFour;
 }
 // 按钮组件
 const buttonComponentActive = ref(false);
@@ -15,7 +15,7 @@ const activeButton = () => {
     buttonComponentActive.value = !buttonComponentActive.value;
     buttonSpanActive.value = !buttonSpanActive.value;
     buttonSpanDefault.value = !buttonSpanDefault.value;
-    settingStore.settingList[2].isShow = !settingStore.settingList[2].isShow;
+    settingStore.timeSetting.isShow = !settingStore.timeSetting.isShow;
 }
 // 选择颜色组件
 const colorSpanList = ref([
@@ -41,12 +41,12 @@ const selectColor = (index) => {
         colorSpanList.value[i].isActive = false;
     }
     colorSpanList.value[index].isActive = !colorSpanList.value[index].isActive;
-    settingStore.settingList[2].timeFontColor = colorSpanList.value[index].color;
-    settingStore.settingList[2].timeFontColorIndex = index;
+    settingStore.timeSetting.timeFontColor = colorSpanList.value[index].color;
+    settingStore.timeSetting.timeFontColorIndex = index;
 }
 // 初始化颜色
 const selectColorStart = () => {
-    const index = settingStore.settingList[2].timeFontColorIndex;
+    const index = settingStore.timeSetting.timeFontColorIndex;
     colorSpanList.value[index].isActive = !colorSpanList.value[index].isActive;
 }
 
@@ -67,18 +67,18 @@ onMounted(() => selectColorStart())
                     </div>
                 </div>
                 <div class="spanOption">
-                    <span :class="{ selectSpan: settingStore.settingList[2].isShowYear }" @click="settingStore.settingList[2].isShowYear = !settingStore.settingList[2].isShowYear">年</span>
-                    <span :class="{ selectSpan: settingStore.settingList[2].isShowMonthDay }" @click="settingStore.settingList[2].isShowMonthDay = !settingStore.settingList[2].isShowMonthDay">月日</span>
-                    <span :class="{ selectSpan: settingStore.settingList[2].isShowHourMinutes }" @click="settingStore.settingList[2].isShowHourMinutes = !settingStore.settingList[2].isShowHourMinutes">时分</span>
-                    <span :class="{ selectSpan: settingStore.settingList[2].isShowWeek }" @click="settingStore.settingList[2].isShowWeek = !settingStore.settingList[2].isShowWeek">星期</span>
-                    <span :class="{ selectSpan: settingStore.settingList[2].timeFontWeight }" @click="settingStore.settingList[2].timeFontWeight = !settingStore.settingList[2].timeFontWeight">粗体</span>
-                    <span :class="{ selectSpan: settingStore.settingList[2].timeTypeTwentyeFour }" @click="timeTwentyeFour">24</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.isShowYear }" @click="settingStore.timeSetting.isShowYear = !settingStore.timeSetting.isShowYear">年</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.isShowMonthDay }" @click="settingStore.timeSetting.isShowMonthDay = !settingStore.timeSetting.isShowMonthDay">月日</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.isShowHourMinutes }" @click="settingStore.timeSetting.isShowHourMinutes = !settingStore.timeSetting.isShowHourMinutes">时分</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.isShowWeek }" @click="settingStore.timeSetting.isShowWeek = !settingStore.timeSetting.isShowWeek">星期</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.timeFontWeight }" @click="settingStore.timeSetting.timeFontWeight = !settingStore.timeSetting.timeFontWeight">粗体</span>
+                    <span :class="{ selectSpan: settingStore.timeSetting.timeTypeTwentyFour }" @click="timeTwentyFour">24</span>
                 </div>
             </div>
             <div class="timeFontSetting">
                 <div class="timeFontSize">
-                    <span>字体大小：{{ settingStore.settingList[2].timeFontSize }}px</span>
-                    <input type="range" min="8" max="24" v-model="settingStore.settingList[2].timeFontSize">
+                    <span>字体大小：{{ settingStore.timeSetting.timeFontSize }}px</span>
+                    <input type="range" min="8" max="24" v-model="settingStore.timeSetting.timeFontSize">
                 </div>
                 <div class="timeFontColor">
                     <span>字体颜色:</span>

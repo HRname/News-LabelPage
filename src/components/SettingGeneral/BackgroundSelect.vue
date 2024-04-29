@@ -6,13 +6,13 @@ const settingStore = useSettingStore();
 const pictureStore = usePictureStore();
 
 const changeBackground = (src) => {
-    settingStore.settingList[3].backgroundFullPath = src;
-    settingStore.settingList[3].closeBackgroundOption = false;
+    settingStore.backgroundSetting.backgroundFullPath = src;
+    settingStore.backgroundSetting.closeBackgroundOption = false;
 }
 </script>
 
 <template>
-    <div class="backgroundSelect" v-show="settingStore.settingList[3].selectBackground">
+    <div class="backgroundSelect" v-show="settingStore.backgroundSetting.selectBackground">
         <div class="pictureStoreTitle">
             <span>默认图库</span>
         </div>

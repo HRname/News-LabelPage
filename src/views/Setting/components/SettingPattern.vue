@@ -11,12 +11,12 @@ const settingStore = useSettingStore();
         </div>
         <div class="patternBody">
             <div @click="settingStore.enterSimplePattern">
-                <img src="@/assets/极简.png" alt="" :class="{ selectImg: settingStore.settingList[4].isSimplePattern }">
-                <span :class="{ selectSpan: settingStore.settingList[4].isSimplePattern }">极简</span>
+                <img src="@/assets/极简.png" alt="" :class="{ selectImg: settingStore.simplePatternSetting.isSimplePattern }">
+                <span :class="{ selectSpan: settingStore.simplePatternSetting.isSimplePattern }">极简</span>
             </div>
             <div @click="settingStore.enterComponent">
-                <img src="@/assets/组件.png" :class="{ selectImg: !settingStore.settingList[4].isSimplePattern }" alt="">
-                <span :class="{ selectSpan: !settingStore.settingList[4].isSimplePattern }">组件</span>
+                <img src="@/assets/组件.png" :class="{ selectImg: !settingStore.simplePatternSetting.isSimplePattern }" alt="">
+                <span :class="{ selectSpan: !settingStore.simplePatternSetting.isSimplePattern }">组件</span>
             </div>
         </div>
         <div class="submit">

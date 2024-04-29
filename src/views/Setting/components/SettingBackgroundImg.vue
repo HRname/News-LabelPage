@@ -12,7 +12,7 @@ const settingStore = useSettingStore();
         <div class="settingBgImgBody">
             <div class="changeBg">
                 <span>背景</span>
-                <img :src=settingStore.settingList[3].backgroundFullPath alt="">
+                <img :src=settingStore.backgroundSetting.backgroundFullPath alt="">
                 <div class="selectWay">
                     <span @click="settingStore.enterModifyBackground()">自定义背景</span>
                     <span @click="settingStore.enterSelectBackground()">选择背景</span>
@@ -20,12 +20,12 @@ const settingStore = useSettingStore();
             </div>
             <div class="bgStyle">
                 <div>
-                    <span>背景遮罩度：{{ settingStore.settingList[3].shelterBackgroundOpacity }}%</span>
-                    <input type="range" min="0" max="100" v-model="settingStore.settingList[3].shelterBackgroundOpacity">
+                    <span>背景遮罩度：{{ settingStore.backgroundSetting.shelterBackgroundOpacity }}%</span>
+                    <input type="range" min="0" max="100" v-model="settingStore.backgroundSetting.shelterBackgroundOpacity">
                 </div>
                 <div>
-                    <span>背景模糊：{{ settingStore.settingList[3].shelterBackgroundBlur * 10 }}%</span>
-                    <input type="range" min="0" max="10" step="0.1" v-model="settingStore.settingList[3].shelterBackgroundBlur">
+                    <span>背景模糊：{{ settingStore.backgroundSetting.shelterBackgroundBlur * 10 }}%</span>
+                    <input type="range" min="0" max="10" step="0.1" v-model="settingStore.backgroundSetting.shelterBackgroundBlur">
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ const settingStore = useSettingStore()
 
 const timeId = setInterval(() => {
     const now = new Date()
-    if(settingStore.settingList[2].timeTypeTwentyeFour){
+    if(settingStore.timeSetting.timeTypeTwentyFour){
         hour.value = now.getHours()
     }else{
         hour.value = timeList.value[now.getHours()]
@@ -44,12 +44,12 @@ onMounted(() => timeId)
 </script>
 
 <template>
-    <div class="LocalTime" v-show="settingStore.settingList[2].isShow" :style="{ color: settingStore.settingList[2].timeFontColor }">
-        <time v-show="settingStore.settingList[2].isShowHourMinutes" :class="{ timeFontWeight:settingStore.settingList[2].timeFontWeight}">{{ hour }}:{{ minutes }}</time>
-        <div :style="{ fontSize: settingStore.settingList[2].timeFontSize + 'px' }">
-            <span v-show="settingStore.settingList[2].isShowYear">{{ year }}年</span>
-            <span v-show="settingStore.settingList[2].isShowMonthDay">{{ month }}月{{ day }}日</span>
-            <span v-show="settingStore.settingList[2].isShowWeek">{{ week }}</span>
+    <div class="LocalTime" v-show="settingStore.timeSetting.isShow" :style="{ color: settingStore.timeSetting.timeFontColor }">
+        <time v-show="settingStore.timeSetting.isShowHourMinutes" :class="{ timeFontWeight:settingStore.timeSetting.timeFontWeight}">{{ hour }}:{{ minutes }}</time>
+        <div :style="{ fontSize: settingStore.timeSetting.timeFontSize + 'px' }">
+            <span v-show="settingStore.timeSetting.isShowYear">{{ year }}年</span>
+            <span v-show="settingStore.timeSetting.isShowMonthDay">{{ month }}月{{ day }}日</span>
+            <span v-show="settingStore.timeSetting.isShowWeek">{{ week }}</span>
         </div>
     </div>
 </template>

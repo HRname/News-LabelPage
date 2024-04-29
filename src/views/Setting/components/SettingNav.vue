@@ -10,9 +10,9 @@ const selectColor = (index) => {
     }
     settingStore.colorSpanList[index].isActive = true
 
-    settingStore.settingList[5].backgroundRed = settingStore.colorSpanList[index].red
-    settingStore.settingList[5].backgroundGreen = settingStore.colorSpanList[index].green
-    settingStore.settingList[5].backgroundBlue = settingStore.colorSpanList[index].blue
+    settingStore.navSetting.backgroundRed = settingStore.colorSpanList[index].red
+    settingStore.navSetting.backgroundGreen = settingStore.colorSpanList[index].green
+    settingStore.navSetting.backgroundBlue = settingStore.colorSpanList[index].blue
 }
 
 // 颜色初始化
@@ -30,19 +30,19 @@ const selectColor = (index) => {
         </div>
         <div class="settingNavBody">
             <div>
-                <span>透明度：{{ settingStore.settingList[5].backgroundOpacity }}</span>
-                <input type="range" min="0" max="1" step="0.01" v-model="settingStore.settingList[5].backgroundOpacity">
+                <span>透明度：{{ settingStore.navSetting.backgroundOpacity }}</span>
+                <input type="range" min="0" max="1" step="0.01" v-model="settingStore.navSetting.backgroundOpacity">
             </div>
             <div>
                 <span>选中形状：</span>
                 <div class="selectShape">
                     <div>
                         <span>圆形：</span>
-                        <input type="radio" :value=true name="select" v-model="settingStore.settingList[5].isBorderRadius">
+                        <input type="radio" :value=true name="select" v-model="settingStore.navSetting.isBorderRadius">
                     </div>
                     <div>
                         <span>方形：</span>
-                        <input type="radio" :value=false name="select" v-model="settingStore.settingList[5].isBorderRadius">
+                        <input type="radio" :value=false name="select" v-model="settingStore.navSetting.isBorderRadius">
                     </div>
                 </div>
             </div>

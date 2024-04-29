@@ -59,7 +59,7 @@
         @contextmenu="handleContextMenu"
         @contextmenu.prevent.stop="clickAddHandel"
         @click="clickHidden"
-        v-show="settingStore.settingList[4].HomePageUrlApp"
+        v-show="settingStore.simplePatternSetting.HomePageUrlApp"
     >
         <li class="webUrlApp" v-for="(item,index) in urlList" :key="item.id" :style="{ height:settingStore.webAppSetting.webAppHeight+'px', width:settingStore.webAppSetting.webAppWidth+'px'}">
             <WebUrlApp :webUrlApp = "item" @contextmenu.prevent.stop="clickDelHandel(index,$event)">

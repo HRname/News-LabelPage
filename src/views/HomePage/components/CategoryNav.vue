@@ -26,7 +26,7 @@ const clickHeaderImg = () => {
 </script>
 
 <template>
-    <ul v-show="settingStore.settingList[4].HomePageNav" :style="{ backgroundColor: 'rgba(' + settingStore.settingList[5].backgroundRed + ',' + settingStore.settingList[5].backgroundGreen + ',' + settingStore.settingList[5].backgroundBlue + ',' + settingStore.settingList[5].backgroundOpacity + ')' }">
+    <ul v-show="settingStore.simplePatternSetting.HomePageNav" :style="{ backgroundColor: 'rgba(' + settingStore.navSetting.backgroundRed + ',' + settingStore.navSetting.backgroundGreen + ',' + settingStore.navSetting.backgroundBlue + ',' + settingStore.navSetting.backgroundOpacity + ')' }">
         <li class="loginUser">
             <div @click="clickHeaderImg()" class="userHeader">
                 <img :src="userStore.user.userHeaderImg" v-show="userStore.user.userHeaderImg != null" alt="">
@@ -35,7 +35,7 @@ const clickHeaderImg = () => {
             </div>
         </li>
         <li v-for="item in CategoryList" :key="item.id">
-            <router-link :to="`${item.url}`" class="routerStyle" :class="{ addBorderRadius: settingStore.settingList[5].isBorderRadius }">
+            <router-link :to="`${item.url}`" class="routerStyle" :class="{ addBorderRadius: settingStore.navSetting.isBorderRadius }">
                 <span v-html="item.icon"></span>
                 <span>{{ item.name }}</span>
             </router-link>

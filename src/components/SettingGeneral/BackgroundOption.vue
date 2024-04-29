@@ -9,10 +9,10 @@ const enterStyle = ref(false);
 </script>
 
 <template>
-    <div class="backgroundOption" v-show="settingStore.settingList[3].closeBackgroundOption">
+    <div class="backgroundOption" v-show="settingStore.backgroundSetting.closeBackgroundOption">
         <div class="backgroundNav">
-            <span @click="settingStore.activeModifyBackground" :class="{ activeSpan: settingStore.settingList[3].modifyBackground }">自定义背景</span>
-            <span @click="settingStore.activeSelectBackground" :class="{ activeSpan: settingStore.settingList[3].selectBackground}">选择背景</span>
+            <span @click="settingStore.activeModifyBackground" :class="{ activeSpan: settingStore.backgroundSetting.modifyBackground }">自定义背景</span>
+            <span @click="settingStore.activeSelectBackground" :class="{ activeSpan: settingStore.backgroundSetting.selectBackground}">选择背景</span>
         </div>
         <span class="lineBetween"></span>
         <div class="backgroundBody">
@@ -24,7 +24,7 @@ const enterStyle = ref(false);
         </span>
     </div>
     <!-- 打开背景设置选项卡时遮挡窗口 -->
-    <div class="placeholder" v-show="settingStore.settingList[3].closeBackgroundOption"></div>
+    <div class="placeholder" v-show="settingStore.backgroundSetting.closeBackgroundOption"></div>
 </template>
 
 <style scoped>
