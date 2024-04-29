@@ -90,7 +90,7 @@ onMounted(() => selectColorStart())
             </div>
         </div>
         <div class="submit">
-            <button>保存</button>
+            <button @click="settingStore.updateTimeSetting(settingStore.timeSetting)">保存</button>
         </div>
     </div>
 </template>

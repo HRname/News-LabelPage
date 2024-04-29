@@ -20,7 +20,7 @@ const settingStore = useSettingStore();
             </div>
         </div>
         <div class="submit">
-            <button>保存</button>
+            <button @click="settingStore.updateSimplePatternSetting(settingStore.simplePatternSetting)">保存</button>
         </div>
     </div>
 </template>

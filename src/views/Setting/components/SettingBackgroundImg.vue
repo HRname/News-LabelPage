@@ -30,7 +30,7 @@ const settingStore = useSettingStore();
             </div>
         </div>
         <div class="submit">
-            <button>保存</button>
+            <button @click="settingStore.updateBackgroundSetting(settingStore.backgroundSetting)">保存</button>
         </div>
     </div>
 </template>

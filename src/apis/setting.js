@@ -103,7 +103,7 @@ export const updateTimeSettingAPI = (
   // 获取用户关于背景图片的设置信息
   export const getBackgroundSettingAPI = (userId) => {
     return request({
-      url: '/bgSetting?userId='+userId,
+      url: '/backgroundSetting?userId='+userId,
       method: 'get'
     })
   }
@@ -144,8 +144,8 @@ export const updateTimeSettingAPI = (
   export const updateSimplePatternSettingAPI = (
       { 
         userId,
-        HomePageNav,
-        HomePageUrlApp,
+        homePageNav,
+        homePageUrlApp,
         isSimplePattern,
         placeholder
       }) => {
@@ -154,8 +154,8 @@ export const updateTimeSettingAPI = (
       method: 'put',
       data:{
         userId,
-        HomePageNav,
-        HomePageUrlApp,
+        homePageNav,
+        homePageUrlApp,
         isSimplePattern,
         placeholder
       }

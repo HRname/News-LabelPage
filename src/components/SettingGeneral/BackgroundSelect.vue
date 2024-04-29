@@ -7,12 +7,12 @@ const pictureStore = usePictureStore();
 
 const changeBackground = (src) => {
     settingStore.backgroundSetting.backgroundFullPath = src;
-    settingStore.backgroundSetting.closeBackgroundOption = false;
+    settingStore.closeBackgroundOption = false;
 }
 </script>
 
 <template>
-    <div class="backgroundSelect" v-show="settingStore.backgroundSetting.selectBackground">
+    <div class="backgroundSelect" v-show="settingStore.selectBackground">
         <div class="pictureStoreTitle">
             <span>默认图库</span>
         </div>

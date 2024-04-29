@@ -55,7 +55,7 @@ const selectColor = (index) => {
             </div>
         </div>
         <div class="submit">
-            <button>保存</button>
+            <button @click="settingStore.updateNavSetting(settingStore.navSetting)">保存</button>
         </div>
     </div>
 </template>

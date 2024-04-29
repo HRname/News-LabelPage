@@ -19,7 +19,7 @@ const changeBackground = () => {
 </script>
 
 <template>
-    <div class="modifyBackground" v-show="settingStore.backgroundSetting.modifyBackground">
+    <div class="modifyBackground" v-show="settingStore.modifyBackground">
         <div class="uploadFile">
             <span>选择文件</span>
             <input class="uploadImg" id="uploadFullPath" type="file" name="" @input="getImgFullPath">
@@ -29,7 +29,7 @@ const changeBackground = () => {
             <img :src= filePath alt="请选择图片">
         </div>
     </div>
-    <div class="getButton" v-show="settingStore.backgroundSetting.modifyBackground">
+    <div class="getButton" v-show="settingStore.modifyBackground">
         <button @click="changeBackground">确定</button>
     </div>
 </template>

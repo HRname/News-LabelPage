@@ -51,17 +51,19 @@ export const useSettingStore = defineStore("setting",() => {
         timeFontColor: 'white' ,
         timeFontColorIndex: 0
     })
+    // 控制背景设置弹窗的显示与隐藏
+    const modifyBackground = ref(false)
+    const selectBackground = ref(false)
+    const closeBackgroundOption = ref(false)
+
     const backgroundSetting = ref({
         shelterBackgroundOpacity: 0,
         shelterBackgroundBlur: 0,
-        modifyBackground: false,
-        selectBackground: false,
         backgroundFullPath: '/src/assets/preview.jpg',
-        closeBackgroundOption: false
     })
     const simplePatternSetting = ref({
-        HomePageNav: true,
-        HomePageUrlApp: true,
+        homePageNav: true,
+        homePageUrlApp: true,
         isSimplePattern: false,
         placeholder: 0
     })
@@ -124,7 +126,7 @@ export const useSettingStore = defineStore("setting",() => {
         { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
         { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
         { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
-        { id: 5, name: 'simplePatternSetting', HomePageNav: true, HomePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
+        { id: 5, name: 'simplePatternSetting', homePageNav: true, homePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
         { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
     ])
 
@@ -194,16 +196,16 @@ const colorSpanList = ref([
 
     // 背景选项卡
     const activeModifyBackground = () => {
-        settingList.value[3].modifyBackground = true;
-        settingList.value[3].selectBackground = false;
+        modifyBackground.value = true;
+        selectBackground.value = false;
     }
     const activeSelectBackground = () => {
-        settingList.value[3].modifyBackground = false;
-        settingList.value[3].selectBackground = true;
+        modifyBackground.value = false;
+        selectBackground.value = true;
     }
     // 控制背景选项卡开启关闭
     const switchBackgroundOption = () => {
-        settingList.value[3].closeBackgroundOption = !settingList.value[3].closeBackgroundOption;
+        closeBackgroundOption.value = !closeBackgroundOption.value;
     }
     // 通过设置打开背景设置时选中进入时点击的选项
     // 进入自定义背景
@@ -219,18 +221,18 @@ const colorSpanList = ref([
 
     // 进入极简模式
     const enterSimplePattern = () => {
-        settingList.value[4].HomePageNav = false;
-        settingList.value[4].HomePageUrlApp = false;
-        settingList.value[4].placeholder = 50;
-        settingList.value[4].isSimplePattern = true;
+        simplePatternSetting.value.homePageNav = false;
+        simplePatternSetting.value.homePageUrlApp = false;
+        simplePatternSetting.value.placeholder = 50;
+        simplePatternSetting.value.isSimplePattern = true;
     }
 
     // 进入组件模式
     const enterComponent = () => {
-        settingList.value[4].HomePageNav = true;
-        settingList.value[4].HomePageUrlApp = true;
-        settingList.value[4].isSimplePattern = false;
-        settingList.value[4].placeholder = 0;
+        simplePatternSetting.value.homePageNav = true;
+        simplePatternSetting.value.homePageUrlApp = true;
+        simplePatternSetting.value.isSimplePattern = false;
+        simplePatternSetting.value.placeholder = 0;
     }
 
     // 重置选项卡
@@ -241,13 +243,16 @@ const colorSpanList = ref([
         searchSetting.value = defaultSettingList.value[1];
     }
     const resetTimeSetting = () => {
-        settingList.value[2] = defaultSettingList.value[2];
+        timeSetting.value = defaultSettingList.value[2];
     }
     const resetNavSetting = () => {
-        settingList.value[5] = defaultSettingList.value[5];
+        navSetting.value = defaultSettingList.value[5];
     }
     const resetAllSetting = () => {
-        settingList.value = defaultSettingList.value;
+        resetSearchSetting();
+        resetWebAppSetting();
+        resetTimeSetting();
+        resetNavSetting();
     }
 
     return {
@@ -284,5 +289,8 @@ const colorSpanList = ref([
         updateSimplePatternSetting,
         navSetting,
         updateNavSetting,
+        modifyBackground,
+        selectBackground,
+        closeBackgroundOption,
     }
 })

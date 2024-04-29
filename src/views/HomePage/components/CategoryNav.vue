@@ -26,7 +26,7 @@ const clickHeaderImg = () => {
 </script>
 
 <template>
-    <ul v-show="settingStore.simplePatternSetting.HomePageNav" :style="{ backgroundColor: 'rgba(' + settingStore.navSetting.backgroundRed + ',' + settingStore.navSetting.backgroundGreen + ',' + settingStore.navSetting.backgroundBlue + ',' + settingStore.navSetting.backgroundOpacity + ')' }">
+    <ul v-show="settingStore.simplePatternSetting.homePageNav" :style="{ backgroundColor: 'rgba(' + settingStore.navSetting.backgroundRed + ',' + settingStore.navSetting.backgroundGreen + ',' + settingStore.navSetting.backgroundBlue + ',' + settingStore.navSetting.backgroundOpacity + ')' }">
         <li class="loginUser">
             <div @click="clickHeaderImg()" class="userHeader">
                 <img :src="userStore.user.userHeaderImg" v-show="userStore.user.userHeaderImg != null" alt="">
