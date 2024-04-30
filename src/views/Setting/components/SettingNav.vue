@@ -5,11 +5,7 @@ import { useSettingStore } from "@/stores/settingStore";
 const settingStore = useSettingStore()
 
 const selectColor = (index) => {
-    for(let i = 0; i < settingStore.colorSpanList.length; i++ ){
-        settingStore.colorSpanList[i].isActive = false;
-    }
-    settingStore.colorSpanList[index].isActive = true
-
+    settingStore.navBgcColorIsChange = true;
     settingStore.navSetting.backgroundRed = settingStore.colorSpanList[index].red
     settingStore.navSetting.backgroundGreen = settingStore.colorSpanList[index].green
     settingStore.navSetting.backgroundBlue = settingStore.colorSpanList[index].blue

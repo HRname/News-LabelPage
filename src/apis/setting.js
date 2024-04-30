@@ -119,7 +119,7 @@ export const updateTimeSettingAPI = (
         closeBackgroundOption
       }) => {
     return request({
-      url: '/bgSetting',
+      url: '/backgroundSetting',
       method: 'put',
       data:{
         userId,

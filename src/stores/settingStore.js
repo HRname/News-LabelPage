@@ -88,46 +88,47 @@ export const useSettingStore = defineStore("setting",() => {
         const simplePatternRes = await getSimplePatternSettingAPI(userId);
         simplePatternSetting.value = simplePatternRes.data;
         const navRes = await getNavSettingAPI(userId);
+        navBgcColorIsChange.value = true;
         navSetting.value = navRes.data;
     }
     // 更新用户搜索框设置信息
     const updateSearchSetting = async (searchSetting) => {
-        const searchRes = await updateSearchSettingAPI(searchSetting);
-        console.log(searchRes);
+        await updateSearchSettingAPI(searchSetting);
+        searchSettingIsChange.value = false;
     }
     // 更新用户图标设置信息
     const updateWebAppSetting = async (webAppSetting) => {
-        const webAppRes = await updateWebAppSettingAPI(webAppSetting);
-        console.log(webAppRes);
+        await updateWebAppSettingAPI(webAppSetting);
+        webAppSettingIsChange.value = false;
     }
     // 更新用户时间设置信息
     const updateTimeSetting = async (timeSetting) => {
-        const timeRes = await updateTimeSettingAPI(timeSetting);
-        console.log(timeRes);
+        await updateTimeSettingAPI(timeSetting);
+        timeSettingIsChange.value = false;
     }
     // 更新用户背景设置信息
     const updateBackgroundSetting = async (backgroundSetting) => {
-        const backgroundRes = await updateBackgroundSettingAPI(backgroundSetting);
-        console.log(backgroundRes);
+        await updateBackgroundSettingAPI(backgroundSetting);
+        backgroundSettingIsChange.value = false;
     }
     // 更新用户模式设置信息
     const updateSimplePatternSetting = async (simplePatternSetting) => {
-        const simplePatternRes = await updateSimplePatternSettingAPI(simplePatternSetting);
-        console.log(simplePatternRes);
+        await updateSimplePatternSettingAPI(simplePatternSetting);
+        simplePatternSettingIsChange.value = false;
     }
     // 更新用户导航栏设置信息
     const updateNavSetting = async (navSetting) => {
-        const navRes = await updateNavSettingAPI(navSetting);
-        console.log(navRes);
+        await updateNavSettingAPI(navSetting);
+        navSettingIsChange.value = false;
     }
-
+    // 用于重置功能的默认列表
     const defaultSettingList = ref([
-        { id: 1, name: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
-        { id: 2, name: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
-        { id: 3, name: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
-        { id: 4, name: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
-        { id: 5, name: 'simplePatternSetting', homePageNav: true, homePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
-        { id: 6, name: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
+        { id: 1, settingName: 'searchSetting', searchHeight: 44, searchBottomMargin: 0, searchBorderRadius:30, searchOpacity: 0.9},
+        { id: 2, settingName: 'webAppSetting', webAppHeight: 100, webAppWidth: 100, webAppSize: 55, webAppOpacity: 0.9, webAppBorderRadius: 20, webAppFontSize: 12, webAppSelectDefault: true, webAppSelectRound: false},
+        { id: 3, settingName: 'timeSetting', isShow: true,isShowHourMinutes: true, isShowYear: true, isShowMonthDay: true, isShowWeek: true, timeFontWeight: false, timeTypeTwentyFour: true, timeFontSize: 14, timeFontColor: 'white' ,timeFontColorIndex: 0},
+        { id: 4, settingName: 'backgroudSetting', shelterBackgroundOpacity: 0, shelterBackgroundBlur: 0, modifyBackground: false, selectBackground: false, backgroundFullPath: '/src/assets/preview.jpg', closeBackgroundOption: false },
+        { id: 5, settingName: 'simplePatternSetting', homePageNav: true, homePageUrlApp: true, isSimplePattern: false, placeholder: 0 },
+        { id: 6, settingName: 'navSetting', backgroundRed: 28, backgroundGreen: 24, backgroundBlue: 41, backgroundOpacity: 0.5, isBorderRadius: false }
     ])
 
 // settingNav组件 span颜色列表
@@ -149,15 +150,91 @@ const colorSpanList = ref([
     { id: 14, name:"ligthGreen", red: 153, blue: 153, green: 255, isActive: false },
     { id: 15, name:"ligthPink", red: 204, blue: 153, green: 0, isActive: false },
     { id: 16, name:"deepBlack", red: 28, blue: 24, green: 41, isActive: false },
-])
+])  
+    // 用于监听navSetting的背景颜色是否改变
+    // 如果改变则就将新颜色值所对应的span列表中的颜色值的isActive设置为ture
+    // navBgcColorIsChange用于判断当前是否是颜色值发生改变
+    const navBgcColorIsChange = ref(false)
+    watch(navSetting,(value)=>{
 
+        if(navBgcColorIsChange.value){
+            for(let i=0;i<colorSpanList.value.length;i++){
+                colorSpanList.value[i].isActive = false;
+                if(colorSpanList.value[i].blue === value.backgroundBlue && colorSpanList.value[i].green === value.backgroundGreen && colorSpanList.value[i].red === value.backgroundRed){
+                    colorSpanList.value[i].isActive = true;
+                }
+            }
+            navBgcColorIsChange.value = false;
+        }
+    },{deep:true})
+
+    // 用于控制显示设置界面
     const showSetting = ref(false)
+    // 用于监听用户是否做了修改，如果修改了则在关闭设置时发送更新请求
+    const searchSettingIsChange = ref(false)
+    const webAppSettingIsChange = ref(false)
+    const timeSettingIsChange = ref(false)
+    const backgroundSettingIsChange = ref(false)
+    const simplePatternSettingIsChange = ref(false)
+    const navSettingIsChange = ref(false)
+
+    watch(searchSetting,()=>{
+        // 判断是否是在设置选项卡发生改变
+        if(showSetting.value){
+            console.log('searchSettingIsChange')
+            searchSettingIsChange.value = true;
+        }
+    },{deep:true})
+    watch(webAppSetting,()=>{
+        if(showSetting.value){
+            webAppSettingIsChange.value = true;
+        }
+    },{deep:true})
+    watch(timeSetting,()=>{
+        if(showSetting.value){
+            timeSettingIsChange.value = true;
+        }
+    },{deep:true})
+    watch(backgroundSetting,()=>{
+        if(showSetting.value){
+            backgroundSettingIsChange.value = true;
+        }
+    },{deep:true})
+    watch(simplePatternSetting,()=>{
+        if(showSetting.value){
+            simplePatternSettingIsChange.value = true;
+        }
+    },{deep:true})
+    watch(navSetting,()=>{
+        if(showSetting.value){
+            navSettingIsChange.value = true;
+        }
+    },{deep:true})
+
     // 控制显示设置界面
     const changeShowSetting = () => {
         showSetting.value = !showSetting.value;
         // 退出时重置选项数据
         if (showSetting.value === false) {
             changeSelect(0);
+            if(searchSettingIsChange.value){
+                updateSearchSetting(searchSetting.value);
+            }
+            if(webAppSettingIsChange.value){
+                updateWebAppSetting(webAppSetting.value);
+            }
+            if(timeSettingIsChange.value){
+                updateTimeSetting(timeSetting.value);
+            }
+            if(backgroundSettingIsChange.value){
+                updateBackgroundSetting(backgroundSetting.value);
+            }
+            if(simplePatternSettingIsChange.value){
+                updateSimplePatternSetting(simplePatternSetting.value);
+            }
+            if(navSettingIsChange.value){
+                updateNavSetting(navSetting.value);
+            }
         }
     }
 
@@ -225,6 +302,7 @@ const colorSpanList = ref([
         simplePatternSetting.value.homePageUrlApp = false;
         simplePatternSetting.value.placeholder = 50;
         simplePatternSetting.value.isSimplePattern = true;
+        updateSimplePatternSetting(simplePatternSetting.value);
     }
 
     // 进入组件模式
@@ -233,9 +311,10 @@ const colorSpanList = ref([
         simplePatternSetting.value.homePageUrlApp = true;
         simplePatternSetting.value.isSimplePattern = false;
         simplePatternSetting.value.placeholder = 0;
+        updateSimplePatternSetting(simplePatternSetting.value);
     }
 
-    // 重置选项卡
+    // 重置设置选项卡
     const resetSearchSetting = () => {
         searchSetting.value = defaultSettingList.value[0];
     }
@@ -292,5 +371,6 @@ const colorSpanList = ref([
         modifyBackground,
         selectBackground,
         closeBackgroundOption,
+        navBgcColorIsChange
     }
 })
