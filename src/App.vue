@@ -6,6 +6,7 @@ import { useSettingStore } from '@/stores/settingStore'
 import DetermineAlert from '@/components/SettingGeneral/DetermineAlert.vue'
 import Setting from '@/views/Setting/index.vue'
 import { useUserStore } from './stores/userStore'
+import TipsAlert from './components/TipsAlert.vue'
 
 const appUrlStore = useAppUrlStore()
 const settingStore = useSettingStore();
@@ -24,6 +25,8 @@ const operationFunction = () => {
 
 <template>
   <div class="app">
+    <!-- 提示弹框 -->
+    <TipsAlert></TipsAlert>
     <!-- 背景设置选项卡 -->
     <BackgroundOption></BackgroundOption>
     <!-- 警告弹框 -->

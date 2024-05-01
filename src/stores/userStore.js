@@ -25,12 +25,21 @@ export const useUserStore = defineStore("user",() => {
 
   const login = async (username, password) => {
     const res = await getLoginAPI({username, password})
+    const msg = ref(res.msg)
+    const color = ref('')
+    if(res.data == null){
+      color.value = '#FF0000'
+      settingStore.showTips(msg,color)
+      return
+    }
+
     if (res.code === 1) {
+      msg.value = "登录成功"
+      color.value = '#77FF00'
+      settingStore.showTips(msg,color)
       user.value = res.data
       appurlStore.setWebAppList(user.value.id)
       settingStore.getAllSetting(user.value.id)
-    }else{
-      alert(res.msg)
     }
   }
 

@@ -49,7 +49,7 @@ const showAlert = () => {
 }
 .headImg span{
     height: 80px;
-    width: 100px;
+    width: 300px;
     letter-spacing: 0.2em;
     margin-left: 20px;
     font-size: 24px;

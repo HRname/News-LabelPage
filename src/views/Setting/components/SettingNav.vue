@@ -10,13 +10,6 @@ const selectColor = (index) => {
     settingStore.navSetting.backgroundGreen = settingStore.colorSpanList[index].green
     settingStore.navSetting.backgroundBlue = settingStore.colorSpanList[index].blue
 }
-
-// 颜色初始化
-// const selectColorStart = () => {
-//     const index = settingStore.settingList[2].timeFontColorIndex;
-//     colorSpanList.value[index].isActive = !colorSpanList.value[index].isActive;
-// }
-// onMounted(() => selectColorStart())
 </script>
 
 <template>
@@ -49,9 +42,6 @@ const selectColor = (index) => {
                     </span>
                 </div>
             </div>
-        </div>
-        <div class="submit">
-            <button @click="settingStore.updateNavSetting(settingStore.navSetting)">保存</button>
         </div>
     </div>
 </template>
@@ -133,21 +123,6 @@ input[type="radio"] {
     height: 20px;
     width: 20px;
 }
-
-.submit button{
-    position: absolute;
-    bottom: 20px;
-    right: 10px;
-    border: none;
-    height: 40px;
-    width: 70px;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
-    user-select: none;
-    cursor: pointer;
-}
-
 input[type="range"] {
     appearance: none;
     margin: 0;

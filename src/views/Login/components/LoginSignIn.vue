@@ -36,11 +36,13 @@ const userStore = useUserStore();
 .loginSignIn {
     width: 450px;
     height: 600px;
-    background-color: rgb(28, 28, 30, 0.7);
+    background: linear-gradient(135deg , #009688 0%, #ff80b2 100%);
+    opacity: 0.8;
     border-radius: 10px;
     margin: 8% auto;
     display: flex;
     flex-direction: column;
+    border: 2px solid #fff;
 }
 .title {
     height: 25%;

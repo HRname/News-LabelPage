@@ -93,32 +93,32 @@ export const useSettingStore = defineStore("setting",() => {
     }
     // 更新用户搜索框设置信息
     const updateSearchSetting = async (searchSetting) => {
-        await updateSearchSettingAPI(searchSetting);
+        const res = await updateSearchSettingAPI(searchSetting);
         searchSettingIsChange.value = false;
     }
     // 更新用户图标设置信息
     const updateWebAppSetting = async (webAppSetting) => {
-        await updateWebAppSettingAPI(webAppSetting);
+        const res = await updateWebAppSettingAPI(webAppSetting);
         webAppSettingIsChange.value = false;
     }
     // 更新用户时间设置信息
     const updateTimeSetting = async (timeSetting) => {
-        await updateTimeSettingAPI(timeSetting);
+        const res = await updateTimeSettingAPI(timeSetting);
         timeSettingIsChange.value = false;
     }
     // 更新用户背景设置信息
     const updateBackgroundSetting = async (backgroundSetting) => {
-        await updateBackgroundSettingAPI(backgroundSetting);
+        const res = await updateBackgroundSettingAPI(backgroundSetting);
         backgroundSettingIsChange.value = false;
     }
     // 更新用户模式设置信息
     const updateSimplePatternSetting = async (simplePatternSetting) => {
-        await updateSimplePatternSettingAPI(simplePatternSetting);
+        const res = await updateSimplePatternSettingAPI(simplePatternSetting);
         simplePatternSettingIsChange.value = false;
     }
     // 更新用户导航栏设置信息
     const updateNavSetting = async (navSetting) => {
-        await updateNavSettingAPI(navSetting);
+        const res = await updateNavSettingAPI(navSetting);
         navSettingIsChange.value = false;
     }
     // 用于重置功能的默认列表
@@ -181,7 +181,6 @@ const colorSpanList = ref([
     watch(searchSetting,()=>{
         // 判断是否是在设置选项卡发生改变
         if(showSetting.value){
-            console.log('searchSettingIsChange')
             searchSettingIsChange.value = true;
         }
     },{deep:true})
@@ -217,6 +216,7 @@ const colorSpanList = ref([
         // 退出时重置选项数据
         if (showSetting.value === false) {
             changeSelect(0);
+            // 退出设置时，如果用户修改了数据，则发送请求更新数据
             if(searchSettingIsChange.value){
                 updateSearchSetting(searchSetting.value);
             }
@@ -334,6 +334,47 @@ const colorSpanList = ref([
         resetNavSetting();
     }
 
+    // 提示框相关设置
+    // 提示框背景颜色
+    const tipsBgcColor = ref('')
+    // 提示框高度用于控制提示框的移动
+    const tipsTop = ref(-50)
+    // 提示框提示信息
+    const tips = ref("")
+    // 提示框显示动画
+    const showTips = (msg,color) => {
+        tipsBgcColor.value = color.value;
+        tips.value = msg.value;
+        const interval1 = setInterval(() => {
+            tipsTop.value += 15
+            if (tipsTop.value >= 50) {
+                const interval3 = setTimeout(()=> {
+                    const interval2 = setInterval(() => {
+                        tipsTop.value -= 15;
+                        if (tipsTop.value <= -50) {
+                            clearInterval(interval2);
+                            tips.value = "";
+                        }
+                    },100)
+                    clearInterval(interval3)
+                },2000)
+                clearInterval(interval1);
+            }
+        },100)
+    }
+
+    const tipsAnimation = (res) => {
+        if(res.code == 1){
+            const msg = ref('保存成功');
+            const color = ref('#77FF00')
+            showTips(msg,color);
+        }else{
+            const msg = ref('保存失败');
+            const color = ref('#FF0000')
+            showTips(msg,color);
+        }
+    }
+
     return {
         showSetting,
         changeShowSetting,
@@ -371,6 +412,10 @@ const colorSpanList = ref([
         modifyBackground,
         selectBackground,
         closeBackgroundOption,
-        navBgcColorIsChange
+        navBgcColorIsChange,
+        tipsBgcColor,
+        tipsTop,
+        showTips,
+        tips,
     }
 })

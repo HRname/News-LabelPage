@@ -89,9 +89,6 @@ onMounted(() => selectColorStart())
                 </div>
             </div>
         </div>
-        <div class="submit">
-            <button @click="settingStore.updateTimeSetting(settingStore.timeSetting)">保存</button>
-        </div>
     </div>
 </template>
 
@@ -224,20 +221,6 @@ onMounted(() => selectColorStart())
 }
 .colorSpanActive{
     border: 2px solid #ccc;
-}
-
-.submit button{
-    position: absolute;
-    bottom: 20px;
-    right: 10px;
-    border: none;
-    height: 40px;
-    width: 70px;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(to right, rgb(77, 170, 252) 0%,rgb(24, 144, 255) 100%);
-    user-select: none;
-    cursor: pointer;
 }
 
 input[type="range"] {

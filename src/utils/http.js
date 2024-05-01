@@ -2,7 +2,7 @@ import axios from "axios";
 
 const httpInstance = axios.create({
     baseURL: "http://127.0.0.1:8080",
-    timeout: 50000,
+    timeout: 5000,
 })
 
 // 请求拦截器
