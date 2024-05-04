@@ -2,6 +2,7 @@
 import SearchBox from './components/SearchBox.vue'
 import LocalTime from './components/LocalTime.vue'
 import CategoryList from './components/CategoryNav.vue'
+import SearchTips from './components/SearchTips.vue';
 import { useSettingStore } from '@/stores/settingStore';
 import { ref } from 'vue';
 
@@ -33,6 +34,8 @@ const isShowSpan = ref(true);
     <LocalTime></LocalTime>
     <!-- 搜索框 -->
     <SearchBox></SearchBox>
+    <!-- 搜索提示 -->
+    <SearchTips></SearchTips>
     <!-- 二级路由出口视图 -->
     <RouterView />
 </template>

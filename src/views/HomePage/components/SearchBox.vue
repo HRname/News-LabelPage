@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useSettingStore } from '@/stores/settingStore';
+import { useSearchStore } from '@/stores/searchStore';
 
-const searchText = ref('')
+const settingStore = useSettingStore()
+const searchStore = useSearchStore()
 const activeBgc = ref(false)
 const defaultBgc = ref(true)
 
@@ -15,7 +17,22 @@ const changeDefaultBgc = () => {
     defaultBgc.value = true
 }
 
-const settingStore = useSettingStore()
+// watch(searchStore.searchText, async (val) => {
+//     if (val === '') {
+//         searchStore.searchList.splice(0, searchStore.searchList.length)
+//         return
+//     }
+//     var script = document.createElement("script");
+//     script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=" + val + "&cb=handleResponse";
+//     document.body.appendChild(script);
+
+//     searchStore.searchList.splice(0, searchStore.searchList.length)
+//     setTimeout(() => {
+//         for(let i = 0; i < 9; i++) {
+//             searchStore.searchList.push(tipList[i])
+//         }
+//     }, 200)
+// })
 </script>
 
 <template>
@@ -34,7 +51,7 @@ const settingStore = useSettingStore()
                 <img src="https://files.codelife.cc/itab/search/bing.svg" alt="">
             </div>
 
-            <input type="search" v-model="searchText" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
+            <input id="search" type="search" v-model="searchStore.searchText" @click.stop="" @focus.stop="searchStore.showSearchList" placeholder="请输入搜索内容" name="q" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
 
             <button class="submit" type="submit" :class="{activeBgc: activeBgc, defaultBgc: defaultBgc}" :style="{ height: settingStore.searchSetting.searchHeight + 'px' }">
                 <svg data-v-4baba1fe="" 

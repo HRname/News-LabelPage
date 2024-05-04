@@ -6,8 +6,12 @@ import { getTimeSettingAPI,updateTimeSettingAPI } from "@/apis/setting";
 import { getBackgroundSettingAPI,updateBackgroundSettingAPI } from "@/apis/setting";
 import { getSimplePatternSettingAPI,updateSimplePatternSettingAPI } from "@/apis/setting";
 import { getNavSettingAPI,updateNavSettingAPI } from "@/apis/setting";
+import { useSearchStore } from "./searchStore";
+import { useUserStore } from "./userStore";
 
 export const useSettingStore = defineStore("setting",() => {
+    const searchStore = useSearchStore();
+    const userStore = useUserStore();
     const optionList = ref([
         {id: 1, name: '个人中心',isSelect: true},
         {id: 2, name: '搜索框',isSelect: false},
@@ -113,6 +117,7 @@ export const useSettingStore = defineStore("setting",() => {
     }
     // 更新用户模式设置信息
     const updateSimplePatternSetting = async (simplePatternSetting) => {
+        if(userStore.username == "")return
         const res = await updateSimplePatternSettingAPI(simplePatternSetting);
         simplePatternSettingIsChange.value = false;
     }
@@ -363,17 +368,13 @@ const colorSpanList = ref([
         },100)
     }
 
-    const tipsAnimation = (res) => {
-        if(res.code == 1){
-            const msg = ref('保存成功');
-            const color = ref('#77FF00')
-            showTips(msg,color);
-        }else{
-            const msg = ref('保存失败');
-            const color = ref('#FF0000')
-            showTips(msg,color);
+    watch(simplePatternSetting, (val) => {
+        if (val.isSimplePattern==true) {
+            searchStore.searchListTop = 430;
+        } else {
+            searchStore.searchListTop = 380;
         }
-    }
+    },{deep:true})
 
     return {
         showSetting,

@@ -21,8 +21,13 @@ const clickAccount = () => {
 
 const getImgFullPath = (event) => {
     const uploadFullPath = event.target.files[0];
-    const file = uploadFullPath;
-    user.userHeaderImg = URL.createObjectURL(file)
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        user.userHeaderImg = reader.result;
+    };
+    
+    reader.readAsDataURL(uploadFullPath);
 }
 
 const modifyUser = () => {

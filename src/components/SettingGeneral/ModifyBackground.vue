@@ -6,12 +6,19 @@ const settingStore = useSettingStore()
 const filePath = ref('')
 const getImgFullPath = () => {
     const uploadFullPath = document.getElementById('uploadFullPath')
-    console.log(uploadFullPath)
     const file = uploadFullPath.files[0]
-    filePath.value = URL.createObjectURL(file)
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        console.log(reader);
+        filePath.value = reader.result;
+    };
+
+    reader.readAsDataURL(file);
 }
 
 const changeBackground = () => {
+    console.log(filePath);
     if( filePath.value === '' ) return alert('请选择图片')
     settingStore.backgroundSetting.backgroundFullPath = filePath.value
     settingStore.switchBackgroundOption()

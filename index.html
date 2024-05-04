@@ -7,6 +7,13 @@
     <title>News 标签页</title>
   </head>
   <body>
+    <script>
+      const tipList = []
+      const handleResponse = (response) => {
+        tipList.splice(0, tipList.length)
+        tipList.push(...response.s)
+      }
+    </script>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
